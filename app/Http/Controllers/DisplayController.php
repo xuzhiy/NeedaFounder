@@ -32,31 +32,65 @@ class DisplayController extends Controller
 		$datas = job::all();
 		if(isset($para['search']))
 		{
-			if(isset($para['keywords']))
+			if(isset($para['complete']))
 			{
-				$keywords = $para['keywords'];
-				if(isset($para['location']))
+				$salary = (int)$para['salary'];
+				$type = (int)$para['type'];
+				if(isset($para['keywords']))
+				{
+					$keywords = $para['keywords'];
+					if(isset($para['location']))
+					{
+						// If the location is defined
+						$location = $para['location'];
+						return view('job', compact('datas', 'keywords', 'location', 'salary', 'type'));
+					}
+					else
+					{
+						// If the location is not defined
+						return view('job', compact('datas', 'keywords', 'salary', 'type'));
+					}
+				}
+				else if(isset($para['location']))
 				{
 					// If the location is defined
 					$location = $para['location'];
-					return view('job', compact('datas', 'keywords', 'location'));
+					return view('job', compact('datas', 'location', 'salary', 'type'));
 				}
 				else
 				{
-					// If the location is not defined
-					return view('job', compact('datas', 'keywords'));
+					// User does not input anything.
+					echo "<script>alert('The content cannot be empty!');history.go(-1);</script>";
 				}
-			}
-			else if(isset($para['location']))
-			{
-				// If the location is defined
-				$location = $para['location'];
-				return view('job', compact('datas', 'location'));
 			}
 			else
 			{
-				// User does not input anything.
-				echo "<script>alert('The content cannot be empty!');history.go(-1);</script>";
+				if(isset($para['keywords']))
+				{
+					$keywords = $para['keywords'];
+					if(isset($para['location']))
+					{
+						// If the location is defined
+						$location = $para['location'];
+						return view('job', compact('datas', 'keywords', 'location'));
+					}
+					else
+					{
+						// If the location is not defined
+						return view('job', compact('datas', 'keywords'));
+					}
+				}
+				else if(isset($para['location']))
+				{
+					// If the location is defined
+					$location = $para['location'];
+					return view('job', compact('datas', 'location'));
+				}
+				else
+				{
+					// User does not input anything.
+					echo "<script>alert('The content cannot be empty!');history.go(-1);</script>";
+				}
 			}
 		}
 		else
@@ -113,5 +147,11 @@ class DisplayController extends Controller
 	public function about()
 	{
 		return view('about');
+	}
+	
+	// Display the about page
+	public function search()
+	{
+		return view('completeSearch');
 	}
 }

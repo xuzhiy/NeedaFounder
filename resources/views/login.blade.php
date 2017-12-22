@@ -13,6 +13,7 @@
 	<!-- Include all compiled plugins (below), or include individual files as needed --> 
 	<script src="js/bootstrap.min.js"></script>
   	<script src="js/login.js"></script>
+  	<script src="js/sha1.js"></script>
    
     <!-- styles -->
     <link href="css/font-awesome.css" rel="stylesheet">

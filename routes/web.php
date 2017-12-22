@@ -38,3 +38,5 @@ Route::post('/login_submit','FormController@login');
 Route::post('/register_submit','FormController@register');
 
 Route::get('/about','DisplayController@about');
+
+Route::get('/completeSearch','DisplayController@search');

@@ -73,7 +73,7 @@
 							<!-- /.navbar-collapse --> 
 						</div>
 						<div class="navbar-form navbar-right" role="search">
-							<button type="submit" class="btn btn-primary btn-primary"><span class="glyphicon glyphicon-globe"></span> Search</button>
+							<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-globe"></span> Search</button>
 						</div>
 					</form>
 				</div>
