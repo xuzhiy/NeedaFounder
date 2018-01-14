@@ -1,3 +1,26 @@
+<?php
+	if(!isset($_SESSION)){
+		session_start();
+	}
+	$exist = 0;
+	$status = 0;	// '$status = 0' means the user has not logged in.
+	// Check if the user has logged in. 
+	if(isset($_SESSION['email']))
+	{  
+		foreach($users as $user)
+		{
+			if($user->email === $_SESSION['email'])
+			{
+				$exist = 1;				// '$exist = 1' means the user is existed.
+				break;
+			}
+		} 
+	}
+	if($exist === 1)
+	{
+		$status = 1;
+	}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,27 +54,41 @@
 <link href="css/style.default.css" rel="stylesheet" id="theme-stylesheet">
 </head>
 <body>
-<div class="navbar navbar-default yamm" role="navigation" id="navbar" style="background-color:#a1a1a1" >
-	<div class="container">
-		<div class="navbar-header" > <a class="navbar-brand home" href="homepage" data-animate-hover="bounce"> <img src="img/logo_2.png" alt="logo" class="hidden-xs" style="height: 50px; width: auto"> </a> </div>
-		<div class="navbar-collapse collapse" id="navigation">
-			<ul class="nav navbar-nav navbar-left">
-				<li><a href="homepage" style="color:white">Home</a> </li>
-				<li><a style="color:white"> | </a></li>
-				<li><a href="about" style="color:white">About us</a> </li>
-			</ul>
-		</div>
-		<div class="navbar-buttons">
-			<div class="navbar-collapse collapse right" style="color:white"> <img src="img/Users_213px_1194852_easyicon.net.png" alt="logo" class="hidden-xs" style="height: 30px; width: auto"> <a href="login" class="btn btn-primary navbar-btn" style="background-color:#a1a1a1; border-color: #a1a1a1"><span class="hidden-sm">Login</span></a>/ <a href="login" class="btn btn-primary navbar-btn" style="background-color:#a1a1a1; border-color: #a1a1a1"><span class="hidden-sm">Register</span></a> </div>
+<div class="navbar navbar-default yamm" role="navigation" id="navbar" style="background-color:#a1a1a1">
+		<div class="container">
+			<div class="navbar-header"> <a class="navbar-brand home" href="homepage" data-animate-hover="bounce"> <img src="img/logo_2.png" alt="logo" class="hidden-xs" style="height: 50px; width: auto"> </a> </div>
+			<div class="navbar-collapse collapse" id="navigation">
+				<ul class="nav navbar-nav navbar-left">
+					<li><a href="homepage" style="color:white">Home</a> </li>
+					<li><a style="color:white"> | </a>
+					</li>
+					<li><a href="about" style="color:white">About us</a> </li>
+				</ul>
+			</div>
+			<div class="navbar-buttons">
+				<div class="navbar-collapse collapse right" style="color:white"> <img src="img/Users_213px_1194852_easyicon.net.png" alt="logo" class="hidden-xs" style="height: 30px; width: auto">
+				<?php
+						if($status === 0)
+						{
+							echo '<a href="login" class="btn btn-primary navbar-btn" style="background-color:#a1a1a1; border-color: #a1a1a1"><span class="hidden-sm">Login</span></a>/ <a href="login" class="btn btn-primary navbar-btn" style="background-color:#a1a1a1; border-color: #a1a1a1"><span class="hidden-sm">Register</span></a>';
+						}
+						else
+						{
+							echo '<span><a href="profile" class="btn btn-primary navbar-btn" style="background-color:#a1a1a1; border-color: #a1a1a1">'.$_SESSION['name'].'</a></span> / <span><a href="logout" class="btn btn-primary navbar-btn" style="background-color:#a1a1a1; border-color: #a1a1a1">Logout</a></span>';
+						}
+				?>
+				
+				</div>
+			</div>
 		</div>
 	</div>
-</div>
 <div class="container">
 	<div class="row">
 		<div class="col-sm-4 list_op" style="color: #FF7600;"> Join a business </div>
 		<div class="col-sm-4 list_op"><a href="job" style="color: black"> Find a job </a></div>
-		<div class="col-sm-4 list_op_end"><a href="business" style="color: black"> Enterprise Hiring </a></div>
+		<div class="col-sm-4 list_op_end"><a href="enterprise" style="color: black"> Enterprise Hiring </a></div>
 	</div>
+	<br />
 	<div class="row">
 		<div class="text-center col-md-12">
 			<nav class="navbar navbar-inverse">
@@ -87,7 +124,7 @@
 	?>
 	@foreach($datas as $data)
 	<div class="row">
-		<div class="col-sm-4 picture" style="height: 150px"><img src="img/job.png" alt="Job" height="150px" width="300px"></div>
+		<div class="col-sm-4 picture" style="height: 150px"><img src="img/business.png" alt="Business" height="150px" width="300px" style="display:block"></div>
 		<div class="col-sm-8" style="height: 150px">
 			<div class="jobtitle">{{$data->title}}</div>
 			<div class="jobcontent">{{$data->content}}</div>
@@ -96,7 +133,24 @@
 	</div>
 	<hr style="border-top: 2px solid #BBBBBB;">
 	@endforeach
-	
+	<div class="pages" style="text-align: center;">
+			<ul class="pagination">
+				<li><a href="#">&laquo;</a>
+				</li>
+				<li class="active"><a href="#">1</a>
+				</li>
+				<li><a href="#">2</a>
+				</li>
+				<li><a href="#">3</a>
+				</li>
+				<li><a href="#">4</a>
+				</li>
+				<li><a href="#">5</a>
+				</li>
+				<li><a href="#">&raquo;</a>
+				</li>
+			</ul>
+		</div>
 </div>
 </body>
 </html>

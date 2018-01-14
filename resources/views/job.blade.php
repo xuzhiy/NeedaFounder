@@ -1,3 +1,22 @@
+<?php
+if ( !isset( $_SESSION ) ) {
+	session_start();
+}
+$exist = 0;
+$status = 0; // '$status = 0' means the user has not logged in.
+// Check if the user has logged in. 
+if ( isset( $_SESSION[ 'email' ] ) ) {
+	foreach ( $users as $user ) {
+		if ( $user->email === $_SESSION[ 'email' ] ) {
+			$exist = 1; // '$exist = 1' means the user is existed.
+			break;
+		}
+	}
+}
+if ( $exist === 1 ) {
+	$status = 1;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -45,7 +64,16 @@
 				</ul>
 			</div>
 			<div class="navbar-buttons">
-				<div class="navbar-collapse collapse right" style="color:white"> <img src="img/Users_213px_1194852_easyicon.net.png" alt="logo" class="hidden-xs" style="height: 30px; width: auto"> <a href="login" class="btn btn-primary navbar-btn" style="background-color:#a1a1a1; border-color: #a1a1a1"><span class="hidden-sm">Login</span></a>/ <a href="login" class="btn btn-primary navbar-btn" style="background-color:#a1a1a1; border-color: #a1a1a1"><span class="hidden-sm">Register</span></a> </div>
+				<div class="navbar-collapse collapse right" style="color:white"> <img src="img/Users_213px_1194852_easyicon.net.png" alt="logo" class="hidden-xs" style="height: 30px; width: auto">
+					<?php
+					if ( $status === 0 ) {
+						echo '<a href="login" class="btn btn-primary navbar-btn" style="background-color:#a1a1a1; border-color: #a1a1a1"><span class="hidden-sm">Login</span></a>/ <a href="login" class="btn btn-primary navbar-btn" style="background-color:#a1a1a1; border-color: #a1a1a1"><span class="hidden-sm">Register</span></a>';
+					} else {
+						echo '<span><a href="profile" class="btn btn-primary navbar-btn" style="background-color:#a1a1a1; border-color: #a1a1a1">' . $_SESSION[ 'name' ] . '</a></span> / <span><a href="logout" class="btn btn-primary navbar-btn" style="background-color:#a1a1a1; border-color: #a1a1a1">Logout</a></span>';
+					}
+					?>
+
+				</div>
 			</div>
 		</div>
 	</div>
@@ -54,9 +82,10 @@
 			<div class="col-sm-4 list_op"><a href="business" style="color: black"> Join a business </a>
 			</div>
 			<div class="col-sm-4 list_op" style="color: #FF7600;"> Find a job </div>
-			<div class="col-sm-4 list_op_end"><a href="business" style="color: black"> Enterprise Hiring </a>
+			<div class="col-sm-4 list_op_end"><a href="enterprise" style="color: black"> Enterprise Hiring </a>
 			</div>
 		</div>
+		<br />
 		<div class="row">
 			<div class="text-center col-md-12">
 				<nav class="navbar navbar-inverse">
@@ -86,128 +115,114 @@
 				</nav>
 
 			</div>
-			<hr style="height:5px;border:none;border-top:5px solid green;">
-
-			<?php
-				$x = 0; //x is the number of displayed objects.
-			?> 
-			@foreach($datas as $data)
-			<?php
-				// Matching salary and type.
-				if( isset( $salary ) )
-				{	
-					// For salary
-					if($salary === 1)
-					{
-						if($data->salary >= 1000)
-						{
-							continue;
-						}
-					}
-					else if($salary === 2)
-					{
-						if($data->salary < 1000 || $data->salary >= 2000)
-						{
-							continue;
-						}
-					}
-					else if($salary === 3)
-					{
-						if($data->salary < 2000 || $data->salary >= 3000)
-						{
-							continue;
-						}
-					}
-					else if($salary === 4)
-					{
-						if($data->salary < 3000)
-						{
-							continue;
-						}
-					}
-					// For type
-					if($type === 1)
-					{
-						if($data->type === "Part Time")
-						{
-							continue;
-						}
-					}
-					else if($type === 2)
-					{
-						if($data->type === "Full Time")
-						{
-							continue;
-						}
-					}
-				}
-				// Matching keywords and location.
-				if ( isset( $keywords ) ) 
-				{
-					if ( isset( $location ) ) 
-					{
-						if ( ( stripos( $data->job, $keywords ) !== false || stripos( $data->content, $keywords ) !== false || stripos( $data->background, $keywords ) !== false || stripos( $data->requirements, $keywords ) !== false ) && ( strcasecmp( $data->location, $location ) == 0 ) ) 
-						{
-							// Display this object.
-							$x = $x + 1;
-						} 
-						else 
-						{
-							continue;
-						}
-					} 
-					else 
-					{
-						if ( stripos( $data->job, $keywords ) !== false || stripos( $data->content, $keywords ) !== false || stripos( $data->background, $keywords ) !== false || stripos( $data->requirements, $keywords ) !== false ) 
-						{
-							// Display this object.
-							$x = $x + 1;
-						} 
-						else 
-						{
-							continue;
-						}
-					}
-				} 
-				else if ( isset( $location ) ) 
-				{
-					if ( strcasecmp( $data->location, $location ) == 0 ) 
-					{
-						// Display this object.
-						$x = $x + 1;
-					} 
-					else 
-					{
-						continue;
-					}
-				} 
-				else 
-				{
-					// Display this objects.
-					$x = $x + 1;
-				}
-			?>
-
-			<div class="row">
-				<div class="col-sm-4 picture all_center" style="height: 150px"><img src="img/job.png" alt="Job" height="150px" width="300px">
-				</div>
-				<div class="col-sm-4" style="height: 150px">
-					<div class="jobtitle"><a href="jobDetail?id={{$data->id}}">{{$data->job}}</a>
-					</div>
-					<div class="jobcontent">{{$data->content}}</div>
-					<div class="joblocation"><img src="img/pin_green_25px_1129789_easyicon.net.png" width="12">{{$data->location}}</div>
-				</div>
-				<div class="col-sm-4 payment all_center" style="height: 150px">${{$data->salary}}/week</div>
-			</div>
-			<hr style="border-top: 2px solid #BBBBBB;"> 
-			@endforeach
-
-			<?php
-				if ( $x === 0 ) {
-					echo "<div style='text-align: center;'><h1>Sorry. There's no result.</h1></div>";
-				}
-			?>
 		</div>
+		<hr style="height:5px;border:none;border-top:5px solid green;">
+
+		<?php
+		$x = 0; //x is the number of displayed objects.
+		?> 
+		@foreach($datas as $data)
+		<?php
+		// Matching salary and type.
+		if ( isset( $salary ) ) {
+			// For salary
+			if ( $salary === 1 ) {
+				if ( $data->salary >= 1000 ) {
+					continue;
+				}
+			} else if ( $salary === 2 ) {
+				if ( $data->salary < 1000 || $data->salary >= 2000 ) {
+					continue;
+				}
+			} else if ( $salary === 3 ) {
+				if ( $data->salary < 2000 || $data->salary >= 3000 ) {
+					continue;
+				}
+			} else if ( $salary === 4 ) {
+				if ( $data->salary < 3000 ) {
+					continue;
+				}
+			}
+			// For type
+			if ( $type === 1 ) {
+				if ( $data->type === "Part Time" ) {
+					continue;
+				}
+			} else if ( $type === 2 ) {
+				if ( $data->type === "Full Time" ) {
+					continue;
+				}
+			}
+		}
+		// Matching keywords and location.
+		if ( isset( $keywords ) ) {
+			if ( isset( $location ) ) {
+				if ( ( stripos( $data->job, $keywords ) !== false || stripos( $data->content, $keywords ) !== false || stripos( $data->background, $keywords ) !== false || stripos( $data->requirements, $keywords ) !== false ) && ( strcasecmp( $data->location, $location ) == 0 ) ) {
+					// Display this object.
+					$x = $x + 1;
+				} else {
+					continue;
+				}
+			} else {
+				if ( stripos( $data->job, $keywords ) !== false || stripos( $data->content, $keywords ) !== false || stripos( $data->background, $keywords ) !== false || stripos( $data->requirements, $keywords ) !== false ) {
+					// Display this object.
+					$x = $x + 1;
+				} else {
+					continue;
+				}
+			}
+		} else if ( isset( $location ) ) {
+			if ( strcasecmp( $data->location, $location ) == 0 ) {
+				// Display this object.
+				$x = $x + 1;
+			} else {
+				continue;
+			}
+		} else {
+			// Display this objects.
+			$x = $x + 1;
+		}
+		?>
+
+		<div class="row">
+			<div class="col-sm-4 picture all_center" style="height: 150px"><img src="img/job.png" alt="Job" height="150px" width="300px" style="display:block">
+			</div>
+			<div class="col-sm-4" style="height: 150px">
+				<div class="jobtitle"><a href="jobDetail?id={{$data->id}}">{{$data->job}}</a>
+				</div>
+				<div class="jobcontent">{{$data->content}}</div>
+				<div class="joblocation"><img src="img/pin_green_25px_1129789_easyicon.net.png" width="12">{{$data->location}}</div>
+			</div>
+			<div class="col-sm-4 payment all_center" style="height: 150px">${{$data->salary}}/week</div>
+		</div>
+		<hr style="border-top: 2px solid #BBBBBB;"> 
+		@endforeach
+
+		<?php
+		if ( $x === 0 ) {
+			echo "<div style='text-align: center;'><h1>Sorry. There's no result.</h1></div>";
+		}
+		?>
+
+		<div class="pages" style="text-align: center;">
+			<ul class="pagination">
+				<li><a href="#">&laquo;</a>
+				</li>
+				<li class="active"><a href="#">1</a>
+				</li>
+				<li><a href="#">2</a>
+				</li>
+				<li><a href="#">3</a>
+				</li>
+				<li><a href="#">4</a>
+				</li>
+				<li><a href="#">5</a>
+				</li>
+				<li><a href="#">&raquo;</a>
+				</li>
+			</ul>
+		</div>
+	</div>
 </body>
 
 </html>

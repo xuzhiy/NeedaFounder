@@ -1,3 +1,25 @@
+<?php
+	if(!isset($_SESSION)){
+		session_start();
+	}
+	$exist = 0;
+	// Check if the user has logged in. 
+	if(isset($_SESSION['email']))
+	{  
+		foreach($users as $user)
+		{
+			if($user->email === $_SESSION['email'])
+			{
+				$exist = 1;				// '$exist = 1' means the user is existed.
+				break;
+			}
+		} 
+	}
+	if($exist !== 0)
+	{
+		echo "<script>alert('You have already logged in.');location.href='profile';</script>";
+	}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

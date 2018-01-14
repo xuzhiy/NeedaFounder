@@ -1,4 +1,26 @@
-
+<?php
+	if(!isset($_SESSION)){
+		session_start();
+	}
+	$exist = 0;
+	$status = 0;	// '$status = 0' means the user has not logged in.
+	// Check if the user has logged in. 
+	if(isset($_SESSION['email']))
+	{  
+		foreach($users as $user)
+		{
+			if($user->email === $_SESSION['email'])
+			{
+				$exist = 1;				// '$exist = 1' means the user is existed.
+				break;
+			}
+		} 
+	}
+	if($exist === 1)
+	{
+		$status = 1;
+	}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,18 +49,31 @@
 </head>
 
 <body>
-	<div class="navbar navbar-default yamm" role="navigation" id="navbar" style="background-color:#a1a1a1" >
+	<div class="navbar navbar-default yamm" role="navigation" id="navbar" style="background-color:#a1a1a1">
 		<div class="container">
-			<div class="navbar-header" > <a class="navbar-brand home" href="homepage" data-animate-hover="bounce"> <img src="img/logo_2.png" alt="logo" class="hidden-xs" style="height: 50px; width: auto"> </a> </div>
+			<div class="navbar-header"> <a class="navbar-brand home" href="homepage" data-animate-hover="bounce"> <img src="img/logo_2.png" alt="logo" class="hidden-xs" style="height: 50px; width: auto"> </a> </div>
 			<div class="navbar-collapse collapse" id="navigation">
 				<ul class="nav navbar-nav navbar-left">
 					<li><a href="homepage" style="color:white">Home</a> </li>
-					<li><a style="color:white"> | </a></li>
+					<li><a style="color:white"> | </a>
+					</li>
 					<li><a href="about" style="color:white">About us</a> </li>
 				</ul>
 			</div>
 			<div class="navbar-buttons">
-				<div class="navbar-collapse collapse right" style="color:white"> <img src="img/Users_213px_1194852_easyicon.net.png" alt="logo" class="hidden-xs" style="height: 30px; width: auto"> <a href="login" class="btn btn-primary navbar-btn" style="background-color:#a1a1a1; border-color: #a1a1a1"><span class="hidden-sm">Login</span></a>/ <a href="login" class="btn btn-primary navbar-btn" style="background-color:#a1a1a1; border-color: #a1a1a1"><span class="hidden-sm">Register</span></a> </div>
+				<div class="navbar-collapse collapse right" style="color:white"> <img src="img/Users_213px_1194852_easyicon.net.png" alt="logo" class="hidden-xs" style="height: 30px; width: auto">
+				<?php
+						if($status === 0)
+						{
+							echo '<a href="login" class="btn btn-primary navbar-btn" style="background-color:#a1a1a1; border-color: #a1a1a1"><span class="hidden-sm">Login</span></a>/ <a href="login" class="btn btn-primary navbar-btn" style="background-color:#a1a1a1; border-color: #a1a1a1"><span class="hidden-sm">Register</span></a>';
+						}
+						else
+						{
+							echo '<span><a href="profile" class="btn btn-primary navbar-btn" style="background-color:#a1a1a1; border-color: #a1a1a1">'.$_SESSION['name'].'</a></span> / <span><a href="logout" class="btn btn-primary navbar-btn" style="background-color:#a1a1a1; border-color: #a1a1a1">Logout</a></span>';
+						}
+				?>
+				
+				</div>
 			</div>
 		</div>
 	</div>
