@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
     if(!isset($_SESSION)){
         session_start();
     }
@@ -32,6 +33,25 @@
     {
         $status = 2;
     }
+=======
+if ( !isset( $_SESSION ) ) {
+	session_start();
+}
+$exist = 0;
+$status = 0; // '$status = 0' means the user has not logged in.
+// Check if the user has logged in. 
+if ( isset( $_SESSION[ 'email' ] ) ) {
+	foreach ( $users as $user ) {
+		if ( $user->email === $_SESSION[ 'email' ] ) {
+			$exist = 1; // '$exist = 1' means the user is existed.
+			break;
+		}
+	}
+}
+if ( $exist === 1 ) {
+	$status = 1;
+}
+>>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 ?>
 <!doctype html>
 <html>
@@ -83,6 +103,7 @@
 			<div class="navbar-buttons">
 				<div class="navbar-collapse collapse right" style="color:white"> <img src="img/Users_213px_1194852_easyicon.net.png" alt="logo" class="hidden-xs" style="height: 30px; width: auto">
 					<?php
+<<<<<<< HEAD
 						if($status === 0)
 						{
 							echo '<a href="login" class="btn btn-primary navbar-btn" style="background-color:#a1a1a1; border-color: #a1a1a1"><span class="hidden-sm">Login</span></a>/ <a href="login" class="btn btn-primary navbar-btn" style="background-color:#a1a1a1; border-color: #a1a1a1"><span class="hidden-sm">Register</span></a>';
@@ -96,6 +117,14 @@
                             echo '<span><a href="profile_enterprise" class="btn btn-primary navbar-btn" style="background-color:#a1a1a1; border-color: #a1a1a1">'.$_SESSION['name'].'</a></span> / <span><a href="logout" class="btn btn-primary navbar-btn" style="background-color:#a1a1a1; border-color: #a1a1a1">Logout</a></span>';
                         }
 				?>
+=======
+					if ( $status === 0 ) {
+						echo '<a href="login" class="btn btn-primary navbar-btn" style="background-color:#a1a1a1; border-color: #a1a1a1"><span class="hidden-sm">Login</span></a>/ <a href="login" class="btn btn-primary navbar-btn" style="background-color:#a1a1a1; border-color: #a1a1a1"><span class="hidden-sm">Register</span></a>';
+					} else {
+						echo '<span><a href="profile" class="btn btn-primary navbar-btn" style="background-color:#a1a1a1; border-color: #a1a1a1">' . $_SESSION[ 'name' ] . '</a></span> / <span><a href="logout" class="btn btn-primary navbar-btn" style="background-color:#a1a1a1; border-color: #a1a1a1">Logout</a></span>';
+					}
+					?>
+>>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 
 				</div>
 			</div>

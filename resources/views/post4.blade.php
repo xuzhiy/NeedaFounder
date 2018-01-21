@@ -15,6 +15,7 @@
 				break;
 			}
 		} 
+<<<<<<< HEAD
 		foreach($enterprisea as $enterprise_account)
 		{
 			if($enterprise_account->email === $_SESSION['email'])
@@ -36,6 +37,17 @@
 	{
 		$status = 2;
 	}
+=======
+	}
+	if($exist === 0)
+	{
+		echo "<script>alert('Illegal operation.');history.go(-1);</script>";
+	}
+	else
+	{
+		$status = 1;
+	}
+>>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -83,6 +95,7 @@
 						{
 							echo '<a href="login" class="btn btn-primary navbar-btn" style="background-color:#a1a1a1; border-color: #a1a1a1"><span class="hidden-sm">Login</span></a>/ <a href="login" class="btn btn-primary navbar-btn" style="background-color:#a1a1a1; border-color: #a1a1a1"><span class="hidden-sm">Register</span></a>';
 						}
+<<<<<<< HEAD
 						else if($status === 1)
 						{
 							echo '<span><a href="profile_user" class="btn btn-primary navbar-btn" style="background-color:#a1a1a1; border-color: #a1a1a1">'.$_SESSION['name'].'</a></span> / <span><a href="logout" class="btn btn-primary navbar-btn" style="background-color:#a1a1a1; border-color: #a1a1a1">Logout</a></span>';
@@ -90,6 +103,11 @@
 						else if($status === 2)
 						{
 							echo '<span><a href="profile_enterprise" class="btn btn-primary navbar-btn" style="background-color:#a1a1a1; border-color: #a1a1a1">'.$_SESSION['name'].'</a></span> / <span><a href="logout" class="btn btn-primary navbar-btn" style="background-color:#a1a1a1; border-color: #a1a1a1">Logout</a></span>';
+=======
+						else
+						{
+							echo '<span><a href="profile" class="btn btn-primary navbar-btn" style="background-color:#a1a1a1; border-color: #a1a1a1">'.$_SESSION['name'].'</a></span> / <span><a href="logout" class="btn btn-primary navbar-btn" style="background-color:#a1a1a1; border-color: #a1a1a1">Logout</a></span>';
+>>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 						}
 				?>
 				

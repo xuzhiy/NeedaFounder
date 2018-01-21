@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
     if(!isset($_SESSION)){
         session_start();
@@ -33,10 +34,13 @@
         $status = 2;
     }
 ?>
+=======
+>>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 <!doctype html>
 <html>
 <head>
 <meta charset="utf-8">
+<<<<<<< HEAD
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <script src="js/jquery-3.2.1.min.js"></script>
@@ -112,5 +116,11 @@
 		</div>
 	</div>
 </div>
+=======
+<title>无标题文档</title>
+</head>
+
+<body>
+>>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 </body>
 </html>

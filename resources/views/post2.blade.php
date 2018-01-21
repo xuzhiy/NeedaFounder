@@ -15,6 +15,7 @@
 				break;
 			}
 		} 
+<<<<<<< HEAD
 		foreach($enterprisea as $enterprise_account)
 		{
 			if($enterprise_account->email === $_SESSION['email'])
@@ -38,6 +39,17 @@
 	}
 	$adSize = $_POST['radio-1'];
 	$priority = $_POST['radio-2'];
+=======
+	}
+	if($exist === 0)
+	{
+		echo "<script>alert('Illegal operation.');history.go(-1);</script>";
+	}
+	else
+	{
+		$status = 1;
+	}
+>>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -85,6 +97,7 @@
 						{
 							echo '<a href="login" class="btn btn-primary navbar-btn" style="background-color:#a1a1a1; border-color: #a1a1a1"><span class="hidden-sm">Login</span></a>/ <a href="login" class="btn btn-primary navbar-btn" style="background-color:#a1a1a1; border-color: #a1a1a1"><span class="hidden-sm">Register</span></a>';
 						}
+<<<<<<< HEAD
 						else if($status === 1)
 						{
 							echo '<span><a href="profile_user" class="btn btn-primary navbar-btn" style="background-color:#a1a1a1; border-color: #a1a1a1">'.$_SESSION['name'].'</a></span> / <span><a href="logout" class="btn btn-primary navbar-btn" style="background-color:#a1a1a1; border-color: #a1a1a1">Logout</a></span>';
@@ -92,6 +105,11 @@
 						else if($status === 2)
 						{
 							echo '<span><a href="profile_enterprise" class="btn btn-primary navbar-btn" style="background-color:#a1a1a1; border-color: #a1a1a1">'.$_SESSION['name'].'</a></span> / <span><a href="logout" class="btn btn-primary navbar-btn" style="background-color:#a1a1a1; border-color: #a1a1a1">Logout</a></span>';
+=======
+						else
+						{
+							echo '<span><a href="profile" class="btn btn-primary navbar-btn" style="background-color:#a1a1a1; border-color: #a1a1a1">'.$_SESSION['name'].'</a></span> / <span><a href="logout" class="btn btn-primary navbar-btn" style="background-color:#a1a1a1; border-color: #a1a1a1">Logout</a></span>';
+>>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 						}
 				?>
 				
@@ -108,7 +126,11 @@
 			<div class="col-md-12">
 
 				<div class="box">
+<<<<<<< HEAD
 					<form method="post" action="/post3" class="form-horizontal" enctype="multipart/form-data" role="form">
+=======
+					<form method="post" action="post3">
+>>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 					{{ csrf_field() }}
 						<ul class="nav nav-pills nav-justified">
 							<li>
@@ -122,7 +144,11 @@
 								<a>
 									<span>STEP 2: </span>
 									<br>
+<<<<<<< HEAD
 									<span>Information</span>
+=======
+									<span>Job Information</span>
+>>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 								</a>
 							</li>
 							<li class="disabled">
@@ -144,6 +170,7 @@
 						<div class="content">
 							<hr>
 							<br>
+<<<<<<< HEAD
 
 							<div class="row">	
 								<div class="col-sm-1"></div>
@@ -159,16 +186,25 @@
 								</div>
 							</div>
 							<br>
+=======
+>>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 							
 							<div class="row">	
 								<div class="col-sm-1"></div>
 								
 								<div class="col-sm-9">
 									<div class="form-group">
+<<<<<<< HEAD
 										<label class="col-sm-3 control-label" for="salary">Salary:*</label>
 									
 										<div class="col-sm-9">
 											<input type="text" class="form-control" id="salary" name="salary" placeholder="salary">
+=======
+										<label class="col-sm-3 control-label" for="title">Business Title:*</label>
+									
+										<div class="col-sm-9">
+											<input type="text" class="form-control" id="title" placeholder="business title">
+>>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 										</div>
 									</div>
 								</div>
@@ -180,10 +216,17 @@
 								
 								<div class="col-sm-9">
 									<div class="form-group">
+<<<<<<< HEAD
 										<label class="col-sm-3 control-label" for="type">Job type:*</label>
 									
 										<div class="col-sm-9">
 											<input type="text" class="form-control" id="type" name="type" placeholder="job type">
+=======
+										<label class="col-sm-3 control-label" for="wage">Wage:*</label>
+									
+										<div class="col-sm-9">
+											<input type="text" class="form-control" id="wage" placeholder="wage">
+>>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 										</div>
 									</div>
 								</div>
@@ -195,10 +238,17 @@
 								
 								<div class="col-sm-9">
 									<div class="form-group">
+<<<<<<< HEAD
 										<label class="col-sm-3 control-label" for="location">Location:*</label>
 									
 										<div class="col-sm-9">
 											<input type="text" class="form-control" id="location" name="location" placeholder="location">
+=======
+										<label class="col-sm-3 control-label" for="field">Business Field:*</label>
+									
+										<div class="col-sm-9">
+											<input type="text" class="form-control" id="field" placeholder="business field">
+>>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 										</div>
 									</div>
 								</div>
@@ -210,40 +260,69 @@
 								
 								<div class="col-sm-9">
 									<div class="form-group">
+<<<<<<< HEAD
 										<label class="col-sm-3 control-label" for="vacancy">Vacancy:*</label>
 									
 										<div class="col-sm-9">
 											<input type="text" class="form-control" id="vacancy" name="vacancy" placeholder="vacancy">
+=======
+										<label class="col-sm-3 control-label" for="technique">Technique Required:*</label>
+									
+										<div class="col-sm-9">
+											<input type="text" class="form-control" id="technique" placeholder="technique required">
+>>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 										</div>
 									</div>
 								</div>
 							</div>
 							<br>
+<<<<<<< HEAD
 
+=======
+							
+>>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 							<div class="row">	
 								<div class="col-sm-1"></div>
 								
 								<div class="col-sm-9">
 									<div class="form-group">
+<<<<<<< HEAD
 										<label class="col-sm-3 control-label" for="requirements">Requirements:*</label>
 									
 										<div class="col-sm-9">
 											<input type="text" class="form-control" id="requirements" name="requirements" placeholder="requirements">
+=======
+										<label class="col-sm-3 control-label" for="language">Language Required:*</label>
+									
+										<div class="col-sm-9">
+											<input type="text" class="form-control" id="language" placeholder="language required">
+>>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 										</div>
 									</div>
 								</div>
 							</div>
 							<br>
+<<<<<<< HEAD
 
+=======
+							
+>>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 							<div class="row">	
 								<div class="col-sm-1"></div>
 								
 								<div class="col-sm-9">
 									<div class="form-group">
+<<<<<<< HEAD
 										<label class="col-sm-3 control-label" for="detail">Job Detail:*</label>
 									
 										<div class="col-sm-9">
 											<textarea style="resize: none;" class="form-control" id="detail" name="detail" cols="5"></textarea>
+=======
+										<label class="col-sm-3 control-label" for="detail">Business Detail:*</label>
+									
+										<div class="col-sm-9">
+											<textarea style="resize: none;" class="form-control" id="detail" cols="5"></textarea>
+>>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 										</div>
 									</div>
 								</div>
