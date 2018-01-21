@@ -1,0 +1,143 @@
+/* CSS Document */
+
+.bg {
+	position: relative;
+}
+.bg_mask {
+	position: absolute;
+	left: 0;
+	top: 0;
+	background: #000;
+	opacity: 0.3;
+	width: 100%;
+	height: 100%;
+	filter: alpha(opacity=30);
+}
+.top_bar {
+	width: 100%;
+	position: relative;
+	font-size: 13px;
+	z-index: 1500;
+}
+.logo {
+	border: 0;
+	width: 115px;
+}
+.top_bar_right {
+	float: right;
+	margin-top: 19px;
+}
+.top_bar_right div {
+	display: block;
+	float: left;
+	height: 34px;
+	line-height: 34px;
+	position: relative;
+	text-align: center;
+}
+.top_bar_right .op {
+	padding: 0 8px;
+}
+.top_bar_right a:hover {
+	text-decoration: none;
+	color : crimson;
+}
+.top_bar_right a:focus {
+	text-decoration: none;
+	color : crimson;
+}
+.top_bar_right, .top_bar_right a {
+	text-decoration: none;
+	color: #fff;
+}
+.middle_container {
+	width: 100%;
+	height: 622px;
+}
+#search_part {
+	position: relative;
+	width: 100%;
+	clear: both;
+	z-index: 999;
+}
+#search_part h3, #search_part h4 {
+	text-align: center;
+	font-size: 48px;
+	padding-top: 48px;
+	color: #fff;
+	font-weight: 400;
+}
+#search_part h4 {
+	padding-top: 0;
+	font-size: 28px;
+}
+.search_con {
+	margin: 0 auto;
+}
+.search_con div {
+	display: block;
+	float: left;
+	height: 34px;
+	line-height: 34px;
+	position: relative;
+	text-align: center;
+}
+.search_op {
+	padding: 0 15px;
+	font-size: 20px;
+	width: 200px;
+}
+.search_op a {
+	text-decoration: none;
+	color : darkgray;
+}
+.search_op a:hover {
+	text-decoration: none;
+	color : white;
+}
+.search_op a:focus {
+	text-decoration: none;
+	color : white;
+}
+#searchForm {
+	position: relative;
+	width: 100%;
+	margin: 0 auto;
+}
+#searchForm input {
+	width: 100%;
+	height: 50px;
+	padding-left: 10px;
+	border: 2px solid #FF7600;
+	border-radius: 5px;
+	outline: none;
+	background: #F9F0DA;
+	color: #9E9C9C;
+}
+#searchForm .business {
+    width: 100%;
+    height: 50px;
+    padding-left: 10px;
+    border: 2px solid #FF7600;
+    border-radius: 5px;
+    outline: none;
+    background: #F9F0DA;
+    color: #9E9C9C;
+}
+#searchForm button {
+	position: absolute;
+	top: 0;
+	right: 0;
+	height: 50px;
+	width: 120px;
+	border: none;
+	background : #FF7600;
+	border-radius: 0 5px 5px 0;
+	cursor: pointer;
+	font-size: 16px;
+	color : white;
+}
+.intro_text{
+	width: 250px;
+	font-size: 16px;
+}
