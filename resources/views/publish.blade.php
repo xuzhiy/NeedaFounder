@@ -25,7 +25,7 @@
 	}
 	if($exist === 0)
 	{
-		echo "<script>alert('Illegal operation.');history.go(-1);</script>";
+		echo "<script>alert('Please login first.');history.go(-1);</script>";
 	}
 ?>
 <!DOCTYPE html>

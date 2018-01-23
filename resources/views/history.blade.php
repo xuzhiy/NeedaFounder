@@ -17,7 +17,11 @@
 	}
 	if($exist === 0)
 	{
+<<<<<<< HEAD
+		echo "<script>alert('Please login first!');history.go(-1);</script>";
+=======
 		echo "<script>alert('Illegal operation.');history.go(-1);</script>";
+>>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 	}
 ?>
 <!DOCTYPE html>
@@ -93,7 +97,11 @@
 					<!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
 
 					<li >
+<<<<<<< HEAD
 						<a href="profile_user">
+=======
+						<a href="profile">
+>>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 							<i class="linecons-params"></i>
 							<span class="title">Profile</span>
 						</a>
@@ -111,6 +119,7 @@
 						</a>
 
 					</li>
+<<<<<<< HEAD
 					<li>
 						<a href="publish">
 							<i class="linecons-database"></i>
@@ -118,6 +127,8 @@
 						</a>
 
 					</li>
+=======
+>>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 				</ul>
 
 			</div>
@@ -168,7 +179,11 @@
 								</a>
 							</li>
 							<li>
+<<<<<<< HEAD
 								<a href="profile_user">
+=======
+								<a href="profile">
+>>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 									<i class="fa-user"></i>
 									Profile
 								</a>

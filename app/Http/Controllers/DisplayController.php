@@ -10,7 +10,10 @@ use App\Model\job;
 use App\Model\business;
 use App\Model\enterprise;
 use App\Model\history;
+<<<<<<< HEAD
 use App\Model\enterprise_account;
+=======
+>>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 
 class DisplayController extends Controller
 {
@@ -19,8 +22,12 @@ class DisplayController extends Controller
 	{
 		// Get infor from database
 		$users = user::all();
+<<<<<<< HEAD
 		$enterprisea = enterprise_account::all();
 		return view('homepage', compact('users','enterprisea'));
+=======
+		return view('homepage', compact('users'));
+>>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 	}
 	
 	// Display the login page
@@ -28,8 +35,12 @@ class DisplayController extends Controller
 	{
 		// Get infor from database
 		$users = user::all();
+<<<<<<< HEAD
 		$enterprisea = enterprise_account::all();
 		return view('login', compact('users','enterprisea'));
+=======
+		return view('login', compact('users'));
+>>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 	}
 	
 	// Display the job page
@@ -60,16 +71,24 @@ class DisplayController extends Controller
 						$location = $para['location'];
 						// Get infor from database
 						$users = user::all();
+<<<<<<< HEAD
 						$enterprisea = enterprise_account::all();
 						return view('job', compact('datas', 'keywords', 'location', 'salary', 'type', 'users','enterprisea'));
+=======
+						return view('job', compact('datas', 'keywords', 'location', 'salary', 'type', 'users'));
+>>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 					}
 					else
 					{
 						// If the location is not defined
 						// Get infor from database
 						$users = user::all();
+<<<<<<< HEAD
 						$enterprisea = enterprise_account::all();
 						return view('job', compact('datas', 'keywords', 'salary', 'type', 'users','enterprisea'));
+=======
+						return view('job', compact('datas', 'keywords', 'salary', 'type', 'users'));
+>>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 					}
 				}
 				else if(isset($para['location']))
@@ -78,8 +97,12 @@ class DisplayController extends Controller
 					$location = $para['location'];
 					// Get infor from database
 					$users = user::all();
+<<<<<<< HEAD
 					$enterprisea = enterprise_account::all();
 					return view('job', compact('datas', 'location', 'salary', 'type', 'users','enterprisea'));
+=======
+					return view('job', compact('datas', 'location', 'salary', 'type', 'users'));
+>>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 				}
 				else
 				{
@@ -98,7 +121,10 @@ class DisplayController extends Controller
 						$location = $para['location'];
 						// Get infor from database
 						$users = user::all();
+<<<<<<< HEAD
 						$enterprisea = enterprise_account::all();
+=======
+>>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 						
 						if(!isset($para['history']))			// If the jump is from history page, the results will not be store for another time.
 						{
@@ -141,14 +167,21 @@ class DisplayController extends Controller
 							}
 						}
 						
+<<<<<<< HEAD
 						return view('job', compact('datas', 'keywords', 'location', 'users','enterprisea'));
+=======
+						return view('job', compact('datas', 'keywords', 'location', 'users'));
+>>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 					}
 					else
 					{
 						// If the location is not defined
 						// Get infor from database
 						$users = user::all();
+<<<<<<< HEAD
 						$enterprisea = enterprise_account::all();
+=======
+>>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 						
 						if(!isset($para['history']))			// If the jump is from history page, the results will not be store for another time.
 						{
@@ -191,7 +224,11 @@ class DisplayController extends Controller
 							}
 						}
 						
+<<<<<<< HEAD
 						return view('job', compact('datas', 'keywords', 'users','enterprisea'));
+=======
+						return view('job', compact('datas', 'keywords', 'users'));
+>>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 					}
 				}
 				else if(isset($para['location']))
@@ -200,7 +237,10 @@ class DisplayController extends Controller
 					$location = $para['location'];
 					// Get infor from database
 					$users = user::all();
+<<<<<<< HEAD
 					$enterprisea = enterprise_account::all();
+=======
+>>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 					
 					if(!isset($para['history']))			// If the jump is from history page, the results will not be store for another time.
 					{
@@ -243,7 +283,11 @@ class DisplayController extends Controller
 						}
 					}
 					
+<<<<<<< HEAD
 					return view('job', compact('datas', 'location', 'users','enterprisea'));
+=======
+					return view('job', compact('datas', 'location', 'users'));
+>>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 				}
 				else
 				{
@@ -257,17 +301,24 @@ class DisplayController extends Controller
 			// User doesn't input something for searching. Dispaly all objects in database.
 			// Get infor from database
 			$users = user::all();
+<<<<<<< HEAD
 			$enterprisea = enterprise_account::all();
 			return view('job', compact('datas', 'users','enterprisea'));
+=======
+			return view('job', compact('datas', 'users'));
+>>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 		}
 	}
 	
 	// Display the business page
 	public function business()
 	{
+<<<<<<< HEAD
 		if(!isset($_SESSION)){
 			session_start();
 		}
+=======
+>>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 		// Get infor from request
         $para=Request::all();
 		// Get infor from database
@@ -277,19 +328,28 @@ class DisplayController extends Controller
 		{
 			// User inputs something for searching.
 			// Get infor from database
+<<<<<<< HEAD
 			$neededPosition = $para['type1'];
 			$position = $para['type2'];
 			$users = user::all();
 			$enterprisea = enterprise_account::all();
 			return view('business', compact('datas', 'neededPosition', 'position', 'users','enterprisea'));
+=======
+			$users = user::all();
+			return view('business', compact('users'));
+>>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 		}
 		else
 		{
 			// User doesn't input something for searching. Dispaly all objects in database.
 			// Get infor from database
 			$users = user::all();
+<<<<<<< HEAD
 			$enterprisea = enterprise_account::all();
 			return view('business', compact('datas', 'users','enterprisea'));
+=======
+			return view('business', compact('datas', 'users'));
+>>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 		}
 	}
 	
@@ -317,7 +377,10 @@ class DisplayController extends Controller
 					$location = $para['location'];
 					// Get infor from database
 					$users = user::all();
+<<<<<<< HEAD
 					$enterprisea = enterprise_account::all();
+=======
+>>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 					
 					if(!isset($para['history']))			// If the jump is from history page, the results will not be store for another time.
 					{
@@ -360,14 +423,21 @@ class DisplayController extends Controller
 						}
 					}
 					
+<<<<<<< HEAD
 					return view('enterprise', compact('datas', 'keywords', 'location', 'users','enterprisea'));
+=======
+					return view('enterprise', compact('datas', 'keywords', 'location', 'users'));
+>>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 				}
 				else
 				{
 					// If the location is not defined
 					// Get infor from database
 					$users = user::all();
+<<<<<<< HEAD
 					$enterprisea = enterprise_account::all();
+=======
+>>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 					
 					if(!isset($para['history']))			// If the jump is from history page, the results will not be store for another time.
 					{
@@ -410,7 +480,11 @@ class DisplayController extends Controller
 						}
 					}
 
+<<<<<<< HEAD
 					return view('enterprise', compact('datas', 'keywords', 'users','enterprisea'));
+=======
+					return view('enterprise', compact('datas', 'keywords', 'users'));
+>>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 				}
 			}
 			else if(isset($para['location']))
@@ -419,7 +493,10 @@ class DisplayController extends Controller
 				$location = $para['location'];
 				// Get infor from database
 				$users = user::all();
+<<<<<<< HEAD
 				$enterprisea = enterprise_account::all();
+=======
+>>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 				
 				if(!isset($para['history']))			// If the jump is from history page, the results will not be store for another time.
 				{
@@ -462,7 +539,11 @@ class DisplayController extends Controller
 					}
 				}
 
+<<<<<<< HEAD
 				return view('enterprise', compact('datas', 'location', 'users','enterprisea'));
+=======
+				return view('enterprise', compact('datas', 'location', 'users'));
+>>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 			}
 			else
 			{
@@ -475,6 +556,7 @@ class DisplayController extends Controller
 			// User doesn't input something for searching. Dispaly all objects in database.
 			// Get infor from database
 			$users = user::all();
+<<<<<<< HEAD
 			$enterprisea = enterprise_account::all();
 			return view('enterprise', compact('datas', 'users','enterprisea'));
 		}
@@ -497,6 +579,9 @@ class DisplayController extends Controller
 				$enterprisea = enterprise_account::all();
 				return view('businessDetail', compact('data', 'users','enterprisea'));
 			}
+=======
+			return view('enterprise', compact('datas', 'users'));
+>>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 		}
 	}
 	
@@ -515,8 +600,12 @@ class DisplayController extends Controller
 				// Get infor from database
 				$users = user::all();
 				$enterprises = enterprise::all();
+<<<<<<< HEAD
 				$enterprisea = enterprise_account::all();
 				return view('jobDetail', compact('data', 'users', 'enterprises','enterprisea'));
+=======
+				return view('jobDetail', compact('data', 'users', 'enterprises'));
+>>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 			}
 		}
 	}
@@ -536,13 +625,18 @@ class DisplayController extends Controller
 				// Get infor from database
 				$users = user::all();
 				$jobs = job::all();
+<<<<<<< HEAD
 				$enterprisea = enterprise_account::all();
 				return view('enterpriseDetail', compact('data', 'users', 'jobs','enterprisea'));
+=======
+				return view('enterpriseDetail', compact('data', 'users', 'jobs'));
+>>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 			}
 		}
 	}
 	
 	// Display the profile page
+<<<<<<< HEAD
 	public function profile_user()
 	{
 		// Get infor from database
@@ -555,6 +649,13 @@ class DisplayController extends Controller
 		// Get infor from database
 		$enterprisea = enterprise_account::all();
 		return view('profile_enterprise', compact('enterprisea'));
+=======
+	public function profile()
+	{
+		// Get infor from database
+		$users = user::all();
+		return view('profile', compact('users'));
+>>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 	}
 	
 	// Display the message page
@@ -562,8 +663,12 @@ class DisplayController extends Controller
 	{
 		// Get infor from database
 		$users = user::all();
+<<<<<<< HEAD
 		$enterprisea = enterprise_account::all();
 		return view('message', compact('users','enterprisea'));
+=======
+		return view('message', compact('users'));
+>>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 	}
 	
 	// Display the history page
@@ -575,6 +680,7 @@ class DisplayController extends Controller
 		$histories = history::all();
 		return view('history', compact('users', 'histories'));
 	}
+<<<<<<< HEAD
 
 	// Display the member page
 	public function member()
@@ -584,14 +690,20 @@ class DisplayController extends Controller
 		$enterprisea = enterprise_account::all();
 		return view('member', compact('users','enterprisea'));
 	}
+=======
+>>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 	
 	// Display the about page
 	public function about()
 	{
 		// Get infor from database
 		$users = user::all();
+<<<<<<< HEAD
 		$enterprisea = enterprise_account::all();
 		return view('about', compact('users','enterprisea'));
+=======
+		return view('about', compact('users'));
+>>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 	}
 	
 	// Display the search page
@@ -599,8 +711,12 @@ class DisplayController extends Controller
 	{
 		// Get infor from database
 		$users = user::all();
+<<<<<<< HEAD
 		$enterprisea = enterprise_account::all();
 		return view('completeSearch', compact('users','enterprisea'));
+=======
+		return view('completeSearch', compact('users'));
+>>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 	}
 	
 	// Display the post1 page
@@ -608,8 +724,12 @@ class DisplayController extends Controller
 	{
 		// Get infor from database
 		$users = user::all();
+<<<<<<< HEAD
 		$enterprisea = enterprise_account::all();
 		return view('post1', compact('users','enterprisea'));
+=======
+		return view('post1', compact('users'));
+>>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 	}
 	
 	// Display the post2 page
@@ -617,8 +737,12 @@ class DisplayController extends Controller
 	{
 		// Get infor from database
 		$users = user::all();
+<<<<<<< HEAD
 		$enterprisea = enterprise_account::all();
 		return view('post2', compact('users','enterprisea'));
+=======
+		return view('post2', compact('users'));
+>>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 	}
 	
 	// Display the post3 page
@@ -626,8 +750,12 @@ class DisplayController extends Controller
 	{
 		// Get infor from database
 		$users = user::all();
+<<<<<<< HEAD
 		$enterprisea = enterprise_account::all();
 		return view('post3', compact('users','enterprisea'));
+=======
+		return view('post3', compact('users'));
+>>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 	}
 	
 	// Display the post4 page
@@ -635,8 +763,12 @@ class DisplayController extends Controller
 	{
 		// Get infor from database
 		$users = user::all();
+<<<<<<< HEAD
 		$enterprisea = enterprise_account::all();
 		return view('post4', compact('users','enterprisea'));
+=======
+		return view('post4', compact('users'));
+>>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 	}
 	
 	// Logout function

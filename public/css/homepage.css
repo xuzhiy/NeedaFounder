@@ -114,6 +114,7 @@
 	background: #F9F0DA;
 	color: #9E9C9C;
 }
+<<<<<<< HEAD
 #searchForm .business {
     width: 100%;
     height: 50px;
@@ -124,6 +125,8 @@
     background: #F9F0DA;
     color: #9E9C9C;
 }
+=======
+>>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 #searchForm button {
 	position: absolute;
 	top: 0;
