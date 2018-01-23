@@ -33,15 +33,9 @@ function verify_login()
 // Verify the register information.
 function verify_register()
 {
-<<<<<<< HEAD
 	var name = document.getElementById("user_register_name").value;
 	var email = document.getElementById("user_register_email").value;
 	var password = document.getElementById("user_register_password").value;
-=======
-	var name = document.getElementById("register_name").value;
-	var email = document.getElementById("register_email").value;
-	var password = document.getElementById("register_password").value;
->>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 	
 	var email_format = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z]{2,4})+$/;
 	var name_format = /^\w+$/;
@@ -49,7 +43,6 @@ function verify_register()
 	// Verify input name
 	if (name === "")
 	{
-<<<<<<< HEAD
 		document.getElementById("user_register_name_message").innerHTML = "Name cannot be empty!";
 	}
 	else if (!name_format.test(name)) 
@@ -59,22 +52,10 @@ function verify_register()
 	else
 	{
 		document.getElementById("user_register_name_message").innerHTML = "";
-=======
-		document.getElementById("register_name_message").innerHTML = "Name cannot be empty!";
-	}
-	else if (!name_format.test(name)) 
-	{
-		document.getElementById("register_name_message").innerHTML = "Name can only contain letters, numbers and underline.";
-	} 
-	else
-	{
-		document.getElementById("register_name_message").innerHTML = "";
->>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 	}
 	// Verify input email
 	if (email === "")
 	{
-<<<<<<< HEAD
 		document.getElementById("user_register_email_message").innerHTML = "E-mail cannot be empty!";
 	}
 	else if (!email_format.test(email)) 
@@ -84,22 +65,10 @@ function verify_register()
 	else
 	{
 		document.getElementById("user_register_email_message").innerHTML = "";
-=======
-		document.getElementById("register_email_message").innerHTML = "E-mail cannot be empty!";
-	}
-	else if (!email_format.test(email)) 
-	{
-		document.getElementById("register_email_message").innerHTML = "The format of E-mail is invalid.";
-	} 
-	else
-	{
-		document.getElementById("register_email_message").innerHTML = "";
->>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 	}
 	// Verify input password
 	if (password === "")
 	{
-<<<<<<< HEAD
 		document.getElementById("user_register_password_message").innerHTML = "Password cannot be empty!";
 	}
 	else if (!password_format.test(password)) 
@@ -156,16 +125,5 @@ function verify_register()
 	else
 	{
 		document.getElementById("enterprise_register_password_message").innerHTML = "";
-=======
-		document.getElementById("register_password_message").innerHTML = "Password cannot be empty!";
-	}
-	else if (!password_format.test(password)) 
-	{
-		document.getElementById("register_password_message").innerHTML = "Password can only contain 5-20 letters, numbers and underline.";
-	} 
-	else
-	{
-		document.getElementById("register_password_message").innerHTML = "";
->>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 	}
 }

@@ -6,10 +6,7 @@ use App\Http\Requests;
 use Request;
 use Illuminate\Support\Facades\DB;
 use App\Model\user;
-<<<<<<< HEAD
 use App\Model\enterprise_account;
-=======
->>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 
 class FormController extends Controller
 {
@@ -22,10 +19,7 @@ class FormController extends Controller
         $input=Request::all();
 		// Get infor from database
 		$users = user::all();
-<<<<<<< HEAD
 		$enterprisea = enterprise_account::all();
-=======
->>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 		
 		if(!preg_match($email_format, $input['email']))
 		{
@@ -45,7 +39,6 @@ class FormController extends Controller
 						$_SESSION['email'] = $user->email;
 						$_SESSION['name'] = $user->name;
 						// Login successfully.
-<<<<<<< HEAD
 						return redirect()->action('DisplayController@profile_user');
 					}
 					else
@@ -67,9 +60,6 @@ class FormController extends Controller
 						$_SESSION['name'] = $enterprise_account->name;
 						// Login successfully.
 						return redirect()->action('DisplayController@profile_enterprise');
-=======
-						return redirect()->action('DisplayController@profile');
->>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 					}
 					else
 					{
@@ -86,17 +76,12 @@ class FormController extends Controller
     }
 	
 	// Register function
-<<<<<<< HEAD
 	public function user_register()
-=======
-	public function register()
->>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 	{
 		$name_format = '/^\w+$/';
 		$email_format = '/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z]{2,4})+$/';
 		$password_format = '/^(\w{5,20})+$/';
 		
-<<<<<<< HEAD
 		// Get infor from request
         $input=Request::all();
 		// Get infor from database
@@ -162,17 +147,12 @@ class FormController extends Controller
 		$name_format = '/^\w+$/';
 		$email_format = '/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z]{2,4})+$/';
 		$password_format = '/^(\w{5,20})+$/';
-=======
->>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 		
 		// Get infor from request
         $input=Request::all();
 		// Get infor from database
-<<<<<<< HEAD
 
 		$enterprisea = enterprise_account::all();
-=======
->>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 		$users = user::all();
 		
 		if(!preg_match($name_format, $input['name']))
@@ -190,7 +170,6 @@ class FormController extends Controller
 		else
 		{
 			$x = 0;			// x=1 when the email exist.
-<<<<<<< HEAD
 			foreach($enterprisea as $enterprise_account)
 			{
 				if($enterprise_account->email === $input['email'])
@@ -199,8 +178,6 @@ class FormController extends Controller
 					echo "<script>alert('Email already exist.');history.go(-1);</script>";
 				}
 			}
-=======
->>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 			foreach($users as $user)
 			{
 				if($user->email === $input['email'])
@@ -209,32 +186,20 @@ class FormController extends Controller
 					echo "<script>alert('Email already exist.');history.go(-1);</script>";
 				}
 			}
-<<<<<<< HEAD
 
-=======
->>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 			if($x === 0)
 			{
 				if($input['name'] !== null && $input['email'] !== null && $input['password'] !== null)
 				{
-<<<<<<< HEAD
 					DB::insert('insert into enterprise_account(name,email,password) values(?,?,?)',[$input['name'],$input['email'],sha1($input['password'])]);
-=======
-					DB::insert('insert into user(name,email,password) values(?,?,?)',[$input['name'],$input['email'],sha1($input['password'])]);
->>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 					session_start();
 					$_SESSION['email'] = $input['email'];
 					$_SESSION['name'] = $input['name'];
 					// Get infor from database after insert operation.
-<<<<<<< HEAD
 
 					$enterprisea = enterprise_account::all();
 					$users = user::all();
 					return redirect()->action('DisplayController@profile_enterprise');
-=======
-					$users = user::all();
-					return redirect()->action('DisplayController@profile');
->>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 				}
 				else
 				{
@@ -245,11 +210,7 @@ class FormController extends Controller
     }
 	
 	// Change password function.
-<<<<<<< HEAD
 	public function changePass_user()
-=======
-	public function changePass()
->>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 	{
 		$password_format = '/^(\w{5,20})+$/';
 		
@@ -284,7 +245,6 @@ class FormController extends Controller
 		}
     }
 	
-<<<<<<< HEAD
     public function changePass_enterprise()
 	{
 		$password_format = '/^(\w{5,20})+$/';
@@ -387,10 +347,6 @@ class FormController extends Controller
     }
 
     public function changeInfor_enterprise()
-=======
-	// Change information function.
-	public function changeInfor()
->>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 	{
 		$name_format = '/^\w+$/';
 		$address_format = '/^[0-9A-Za-z\s?]+$/';
@@ -399,44 +355,26 @@ class FormController extends Controller
 		// Get infor from request
         $input=Request::all();
 		// Get infor from database
-<<<<<<< HEAD
 		$enterprisea = enterprise_account::all();
-=======
-		$users = user::all();
->>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 		
 		if(!preg_match($name_format, $input['name']))
 		{
 			echo "<script>alert('Name can only contain letters, numbers and underline.');history.go(-1);</script>";
 		}
-<<<<<<< HEAD
 		else if(!preg_match($address_format, $input['address']) && $input['address'] !== null)
 		{
 			echo "<script>alert('Address can only contain letters, numbers and space.');history.go(-1);</script>";
 		}
 		else if(!preg_match($phone_format, $input['phone']) && $input['phone'] !== null)
-=======
-		else if(!preg_match($address_format, $input['address']))
-		{
-			echo "<script>alert('Address can only contain letters, numbers and space.');history.go(-1);</script>";
-		}
-		else if(!preg_match($phone_format, $input['phone']))
->>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 		{
 			echo "<script>alert('Telephone format is wrong.');history.go(-1);</script>";
 		}
 		else
 		{
 
-<<<<<<< HEAD
 			if($input['name'] !== null && $input['email'] !== null )
 			{
 				DB::update('UPDATE enterprise_account SET name = ?, address = ?, phone = ? WHERE email = ?',[$input['name'],$input['address'],$input['phone'],$input['email']]);
-=======
-			if($input['name'] !== null && $input['email'] !== null && $input['address'] !== null && $input['phone'] !== null)
-			{
-				DB::update('UPDATE user SET name = ?, address = ?, phone = ? WHERE email = ?',[$input['name'],$input['address'],$input['phone'],$input['email']]);
->>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 				echo "<script>alert('Change information successfully.');history.go(-1);</script>";
 			}
 			else

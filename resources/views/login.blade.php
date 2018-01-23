@@ -13,7 +13,6 @@
 				$exist = 1;				// '$exist = 1' means the user is existed.
 				break;
 			}
-<<<<<<< HEAD
 		}
         foreach($enterprisea as $enterprise_account)
         {
@@ -24,22 +23,10 @@
             }
         }  
 	}
-	if($exist === 1)
-	{
-		echo "<script>alert('You have already logged in.');location.href='profile_user';</script>";
-	}
-    if($exist === 2)
-    {
-        echo "<script>alert('You have already logged in.');location.href='profile_enterprise';</script>";
-    }
-=======
-		} 
-	}
 	if($exist !== 0)
 	{
 		echo "<script>alert('You have already logged in.');location.href='profile';</script>";
 	}
->>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -64,14 +51,11 @@
     <link href="css/animate.min.css" rel="stylesheet">
     <link href="css/owl.carousel.css" rel="stylesheet">
     <link href="css/owl.theme.css" rel="stylesheet">
-<<<<<<< HEAD
     <link rel="stylesheet" href="assets/css/xenon-core.css">
     <link rel="stylesheet" href="assets/css/xenon-forms.css">
     <link rel="stylesheet" href="assets/css/xenon-components.css">
     <link rel="stylesheet" href="assets/css/xenon-skins.css">
     <link rel="stylesheet" href="assets/css/custom.css">
-=======
->>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 
     <link href="css/style.default.css" rel="stylesheet" id="theme-stylesheet">
 
@@ -115,7 +99,6 @@
 
                         <hr>
 
-<<<<<<< HEAD
                         <ul class="nav nav-tabs nav-tabs-justified">
                             <li class="active">
                                 <a href="#user_register" data-toggle="tab">
@@ -219,44 +202,6 @@
 
 
                        
-=======
-                      <form action="register_submit" method="post"> 
-							{{ csrf_field() }}
-                            <div class="form-group">
-
-                                <label>Name</label>
-
-                                <input type="text" class="form-control" name="name" id="register_name" onblur="verify_register()">
-					
-                           		<label style="color: red" id="register_name_message"></label>
-                            </div>
-
-                            <div class="form-group">
-
-                                <label>Email</label>
-
-                                <input type="text" class="form-control" name="email" id="register_email" onblur="verify_register()">
-
-                           		<label style="color: red" id="register_email_message"></label>
-                            </div>
-
-                            <div class="form-group">
-
-                                <label>Password</label>
-
-                                <input type="password" class="form-control" name="password" id="register_password" onblur="verify_register()">
-
-                           		<label style="color: red" id="register_password_message"></label>
-                            </div>
-
-                            <div class="text-center">
-
-                                <button class="btn btn-primary" type="submit"><i class="fa fa-user-md"></i> Register</button>
-
-                            </div> 
-
-                        </form> 
->>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 
                     </div>
 

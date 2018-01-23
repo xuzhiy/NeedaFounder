@@ -1,5 +1,4 @@
 <?php
-<<<<<<< HEAD
     if(!isset($_SESSION)){
         session_start();
     }
@@ -33,29 +32,6 @@
     {
         $status = 2;
     }
-=======
-	if(!isset($_SESSION)){
-		session_start();
-	}
-	$exist = 0;
-	$status = 0;	// '$status = 0' means the user has not logged in.
-	// Check if the user has logged in. 
-	if(isset($_SESSION['email']))
-	{  
-		foreach($users as $user)
-		{
-			if($user->email === $_SESSION['email'])
-			{
-				$exist = 1;				// '$exist = 1' means the user is existed.
-				break;
-			}
-		} 
-	}
-	if($exist === 1)
-	{
-		$status = 1;
-	}
->>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 ?>
 <!doctype html>
 <html>
@@ -94,7 +70,6 @@
 						{
 							echo '<a href="login" class="btn btn-primary navbar-btn" style="background-color:#a1a1a1; border-color: #a1a1a1"><span class="hidden-sm">Login</span></a>/ <a href="login" class="btn btn-primary navbar-btn" style="background-color:#a1a1a1; border-color: #a1a1a1"><span class="hidden-sm">Register</span></a>';
 						}
-<<<<<<< HEAD
 						else if($status === 1)
 						{
 							echo '<span><a href="profile_user" class="btn btn-primary navbar-btn" style="background-color:#a1a1a1; border-color: #a1a1a1">'.$_SESSION['name'].'</a></span> / <span><a href="logout" class="btn btn-primary navbar-btn" style="background-color:#a1a1a1; border-color: #a1a1a1">Logout</a></span>';
@@ -103,12 +78,6 @@
                         {
                             echo '<span><a href="profile_enterprise" class="btn btn-primary navbar-btn" style="background-color:#a1a1a1; border-color: #a1a1a1">'.$_SESSION['name'].'</a></span> / <span><a href="logout" class="btn btn-primary navbar-btn" style="background-color:#a1a1a1; border-color: #a1a1a1">Logout</a></span>';
                         }
-=======
-						else
-						{
-							echo '<span><a href="profile" class="btn btn-primary navbar-btn" style="background-color:#a1a1a1; border-color: #a1a1a1">'.$_SESSION['name'].'</a></span> / <span><a href="logout" class="btn btn-primary navbar-btn" style="background-color:#a1a1a1; border-color: #a1a1a1">Logout</a></span>';
-						}
->>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 				?>
 				
 				</div>
