@@ -14,7 +14,6 @@
 				break;
 			}
 		} 
-<<<<<<< HEAD
 		foreach($enterprisea as $enterprise_account)
 		{
 			if($enterprise_account->email === $_SESSION['email'])
@@ -26,13 +25,7 @@
 	}
 	if($exist === 0)
 	{
-		echo "<script>alert('Please login first.');history.go(-1);</script>";
-=======
-	}
-	if($exist === 0)
-	{
 		echo "<script>alert('Illegal operation.');history.go(-1);</script>";
->>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 	}
 ?>
 <!DOCTYPE html>
@@ -109,7 +102,6 @@
 					<!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
 
 					<li >
-<<<<<<< HEAD
 						<?php
 							if($exist === 1)
 							{
@@ -120,12 +112,6 @@
 								echo '<a href="profile_enterprise"><i class="linecons-params"></i><span class="title">Profile</span></a>';
 							}
 						?>
-=======
-						<a href="profile">
-							<i class="linecons-params"></i>
-							<span class="title">Profile</span>
-						</a>
->>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 					</li>
 					<li class="active opened active">
 						<a href="message">
@@ -134,7 +120,6 @@
 						</a>
 					</li>
 					<li>
-<<<<<<< HEAD
 						<?php
 							if($exist === 1)
 							{
@@ -152,11 +137,6 @@
 						<a href="publish">
 							<i class="linecons-database"></i>
 							<span class="title">Published</span>
-=======
-						<a href="history">
-							<i class="linecons-database"></i>
-							<span class="title">Histories</span>
->>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 						</a>
 
 					</li>
@@ -259,11 +239,7 @@
 						?>
 						<div class="mail-compose">
 							
-<<<<<<< HEAD
 							<form method="post" role="form" action="/contact">
-=======
-							<form method="post" role="form" action="send_submit">
->>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 								{{ csrf_field() }}
 								<!-- Header Title and Button Options -->
 								<div class="mail-header">
@@ -279,30 +255,18 @@
 								
 								<div class="form-group">
 									<label for="to">To:</label>
-<<<<<<< HEAD
 									<input type="text" class="form-control" id="receiver" name="receiver" tabindex="1" />
-=======
-									<input type="text" class="form-control" name="receiver" tabindex="1" />
->>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 								</div>
 								
 								
 								<div class="form-group">
 									<label for="subject">Subject:</label>
-<<<<<<< HEAD
 									<input type="text" class="form-control"  id="subject" name="subject" tabindex="1" />
-=======
-									<input type="text" class="form-control" name="subject" tabindex="1" />
->>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 								</div>
 								
 								
 								<div class="compose-message-editor">
-<<<<<<< HEAD
 									<textarea class="form-control" data-html="false" id="message" name="message" data-color="false" style="resize: none;" data-stylesheet-url="assets/css/wysihtml5-color.css" name="content"></textarea>
-=======
-									<textarea class="form-control" data-html="false" data-color="false" style="resize: none;" data-stylesheet-url="assets/css/wysihtml5-color.css" name="content"></textarea>
->>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
 								</div>
 							
 								<div class="row">

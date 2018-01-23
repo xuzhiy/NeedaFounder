@@ -8,7 +8,6 @@ function mouseOver(obj)
 function mouseOut(obj)
 {
 	obj.style.backgroundColor = "white";
-<<<<<<< HEAD
 }
 
 
@@ -113,6 +112,3 @@ function getoptname2(nametxt2)
     document.getElementById('opttext2').innerHTML = "Looking for a...";
     }
 }
-=======
-}
->>>>>>> e8f47ce5b5d204bb89afdf96a6f4b6274c55e34f
