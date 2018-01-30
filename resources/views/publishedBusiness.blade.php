@@ -277,7 +277,7 @@
 												<td>{{$business->title}}</td>
 												<td>{{$business->postTime}}</td>
 												<td>{{$business->location}}</td>
-												<td>{{$business->indusrty}}</td>
+												<td>{{$business->industry}}</td>
 												<td>{{$business->requirements}}</td>
 												<td><a href="/publishedBusiness/destroy/{{$business->id}}"><button class="btn btn-danger">Delete</button></a> </td>
 											</tr>
