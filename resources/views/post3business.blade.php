@@ -154,8 +154,8 @@
 								<div class="col-sm-10" style="border-top:1px solid #000; border-left:1px solid #000;border-bottom:1px solid #000;border-right:1px solid #000;">
 
 									<div class="col-sm-3" style="margin-top:10px;margin-bottom:6px"><strong>Post Type:</strong></div>
-									<div class="col-sm-7" style="margin-top:10px;margin-bottom:6px">Job</div>
-									
+									<div class="col-sm-7" style="margin-top:10px;margin-bottom:6px">Business</div>
+
 									<div class="col-sm-3" style="margin-top:6px;margin-bottom:6px"><strong>ADS size:</strong></div>
 									<?php
 										if($_POST['size'] === "10")
@@ -180,18 +180,21 @@
 									
 									<div class="col-sm-3" style="margin-top:6px;margin-bottom:6px"><strong>Price:</strong></div>
 									<div class="col-sm-7" style="margin-top:6px;margin-bottom:6px">{{$_POST['amount']}}$</div>
+									
+									<div class="col-sm-11" style="margin-top:6px;margin-bottom:6px"></div>
+									<div class="col-sm-1" style="margin-top:6px;margin-bottom:6px"></div>
 
 								</div>
 							</div>
 							<br>
 							<?php
 								$jobtitle = $_POST['title'];
-								$type = $_POST['type'];
-								$salary = $_POST['salary'];
+								$industry = $_POST['industry'];
 								$location = $_POST['location'];
-								$vacancy = $_POST['vacancy'];
 								$detail = $_POST['detail'];
 								$requirements = $_POST['requirements'];
+								$position = $_POST['position'];
+								$neededPosition = $_POST['neededPosition'];
 							?>
 
 
@@ -199,53 +202,44 @@
 								<div class="col-sm-1"></div>
 								<div class="col-sm-10" style="border-top:1px solid #000; border-left:1px solid #000;border-bottom:1px solid #000;border-right:1px solid #000;">
 								
-									<div class="col-sm-3" style="margin-top:10px;margin-bottom:6px"><strong>Job:</strong></div>
-									<div class="col-sm-7" style="margin-top:10px;margin-bottom:6px;word-wrap:break-word;word-break:break-all;overflow: hidden;"><?php echo $jobtitle; ?></div>
-									<input type="hidden" class="form-control" id="title" name="title" placeholder="job title" value="{{$jobtitle}}">
+									<div class="col-sm-3" style="margin-top:10px;margin-bottom:6px"><strong>Business:</strong></div>
+									<div class="col-sm-7" style="margin-top:10px;margin-bottom:6px"><?php echo $jobtitle; ?></div>
+									<input type="hidden" class="form-control" id="title" name="title" placeholder="business title" value="{{$jobtitle}}">
 									
-									<div class="col-sm-3" style="margin-top:6px;margin-bottom:6px"><strong>Salary:</strong></div>
-									<div class="col-sm-7" style="margin-top:6px;margin-bottom:6px;word-wrap:break-word;word-break:break-all;overflow: hidden;">$<?php echo $salary;?>/Week</div>
-									<input type="hidden" class="form-control" id="salary" name="salary" placeholder="salary" value="{{$salary}}">
 									
-									<div class="col-sm-3" style="margin-top:6px;margin-bottom:6px"><strong>Job type:</strong></div>
-									<div class="col-sm-7" style="margin-top:6px;margin-bottom:6px;word-wrap:break-word;word-break:break-all;overflow: hidden;"><?php echo $type;?></div>
-									<input type="hidden" class="form-control" id="type" name="type" placeholder="job type" value="{{$type}}">
+									<div class="col-sm-3" style="margin-top:6px;margin-bottom:6px"><strong>Business industry:</strong></div>
+									<div class="col-sm-7" style="margin-top:6px;margin-bottom:6px"><?php echo $industry;?></div>
+									<input type="hidden" class="form-control" id="industry" name="industry" placeholder="business industry" value="{{$industry}}">
 									
 									<div class="col-sm-3" style="margin-top:6px;margin-bottom:6px"><strong>Location:</strong></div>
-									<div class="col-sm-7" style="margin-top:6px;margin-bottom:6px;word-wrap:break-word;word-break:break-all;overflow: hidden;"><?php echo $location; ?></div>
-									<input type="hidden" class="form-control" id="location" name="location" placeholder="location" value="{{$location}}">
+									<div class="col-sm-7" style="margin-top:6px;margin-bottom:6px"><?php echo $location; ?></div>
+									<input type="hidden" class="form-control" id="location" name="location" placeholder="Location" value="{{$location}}" >
 									
-									<div class="col-sm-3" style="margin-top:6px;margin-bottom:6px"><strong>Vacancy:</strong></div>
-									<?php
-										if($vacancy !== "1")
-										{
-									?>
-									<div class="col-sm-7" style="margin-top:6px;margin-bottom:6px;word-wrap:break-word;word-break:break-all;overflow: hidden;"><?php echo $vacancy;?> People</div>
-									<?php
-										}
-										else
-										{
-									?>
-									<div class="col-sm-7" style="margin-top:6px;margin-bottom:6px;word-wrap:break-word;word-break:break-all;overflow: hidden;"><?php echo $vacancy;?> Person</div>
-									<?php
-										}
-									?>
-									<input type="hidden" class="form-control" id="vacancy" name="vacancy" placeholder="vacancy" value="{{$vacancy}}">
+									<div class="col-sm-3" style="margin-top:6px;margin-bottom:6px"><strong>Position:</strong></div>
+									<div class="col-sm-7" style="margin-top:6px;margin-bottom:6px"><?php echo $position; ?></div>
+									<input type="hidden" class="form-control" name="position" value="{{$position}}" >
 									
+									<div class="col-sm-3" style="margin-top:6px;margin-bottom:6px"><strong>NeededPosition:</strong></div>
+									<div class="col-sm-7" style="margin-top:6px;margin-bottom:6px"><?php echo $neededPosition; ?></div>
+									<input type="hidden" class="form-control" name="neededPosition" value="{{$neededPosition}}" >
+
 									<div class="col-sm-3" style="margin-top:6px;margin-bottom:6px"><strong>Requirements:</strong></div>
 									<div class="col-sm-7" style="margin-top:6px;margin-bottom:6px;word-wrap:break-word;word-break:break-all;overflow: hidden;"><?php echo $requirements;?></div>
 									<textarea style="display:none;resize: none;" class="form-control" id="requirements" name="requirements" cols="5">{{$requirements}}</textarea>
-									
-									<div class="col-sm-3" style="margin-top:6px;margin-bottom:6px"><strong>Job Description:</strong></div>
+
+									<div class="col-sm-3" style="margin-top:6px;margin-bottom:6px"><strong>Business Description:</strong></div>
 									<div class="col-sm-7" style="margin-top:6px;margin-bottom:6px;word-wrap:break-word;word-break:break-all;overflow: hidden;"><?php echo $detail;?></div>
 									<textarea style="display:none;resize: none;" class="form-control" id="detail" name="detail" cols="5">{{$detail}}</textarea>
 									
+									<div class="col-sm-11" style="margin-top:6px;margin-bottom:6px"></div>
+									<div class="col-sm-1" style="margin-top:6px;margin-bottom:6px"></div>
+
 								</div>
 							</div>
 							<br>
 							
 							<input type="hidden" class="form-control" name="amount" value="{{$_POST['amount']}}">
-							<input type="hidden" class="form-control" name="postType" value="job">
+							<input type="hidden" class="form-control" name="postType" value="business">
 							
 						</div>
 						

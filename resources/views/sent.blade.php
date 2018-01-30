@@ -33,7 +33,7 @@
 <head>
 	<meta charset="utf-8">
 	
-	<title>Published</title>
+	<title>Message</title>
 
 	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Arimo:400,700,400italic">
 	<link rel="stylesheet" href="assets/css/fonts/linecons/css/linecons.css">
@@ -46,6 +46,7 @@
 	<link rel="stylesheet" href="assets/css/custom.css">
 
 	<script src="assets/js/jquery-3.2.1.min.js"></script>
+	<script src="js/message.js"></script>
 
 	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>
@@ -56,7 +57,7 @@
 	
 </head>
 <body class="page-body">
-
+	
 	<div class="page-container"><!-- add class "sidebar-collapsed" to close sidebar by default, "chat-visible" to make chat appear always -->
 			
 		<!-- Add "fixed" class to make the sidebar fixed always to the browser viewport. -->
@@ -112,7 +113,7 @@
 							}
 						?>
 					</li>
-					<li>
+					<li class="active opened active">
 						<a href="message">
 							<i class="linecons-mail"></i>
 							<span class="title">Message</span>
@@ -132,13 +133,20 @@
 						
 
 					</li>
-					<li class="active opened active">
-						<a href="publish">
+					<li>
+						<a href="publishedJob">
 							<i class="linecons-pencil"></i>
-							<span class="title">Published</span>
+							<span class="title">PublishedJob</span>
 						</a>
 
-					</li>					
+					</li>
+					<li>
+						<a href="publishedBusiness">
+							<i class="linecons-pencil"></i>
+							<span class="title">PublishedBusiness</span>
+						</a>
+
+					</li>
 				</ul>
 
 			</div>
@@ -148,6 +156,8 @@
 					
 			<!-- User Info, Notifications and Menu Bar -->
 			<nav class="navbar user-info-navbar" role="navigation">
+
+				
 				<!-- Right links for user info navbar -->
 				<ul class="user-info-menu right-links list-inline list-unstyled">
 					
@@ -215,85 +225,133 @@
 				
 			</nav>
 			<div class="page-title">
-				
+
 				<div class="title-env">
-					<h1 class="title">Published</h1>
-					<p class="description">All of your published ads for jobs and enterprises are here</p>
+					<h1 class="title">Message</h1>
+					<p class="description">Mailbox sidebar and composing new message</p>
 				</div>
 				
-			</div>
-			<!-- Table Styles -->
-			<div class="row">
-				<div class="col-md-12">
-				
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h3 class="panel-title">Published</h3>
-						</div>
-						<div class="panel-body panel-border">
-						
-							<div class="row">
-								<div class="col-sm-12">
-									<table class="table table-model-2 table-hover">
-										<thead>
-											<tr>
-												<th>Title</th>
-												<th>Time</th>
-												<th>Salary</th>
-												<th>Location</th>
-												<th>Type</th>
-												<th>Requirements</th>
-												<th>Delete</th>
 
-											</tr>
-										</thead>
-										
-										<tbody>
+					
+			</div>
+			<section class="mailbox-env">
+				
+				<div class="row">
+					
+					<!-- Compose Email Form -->
+					<div class="col-sm-9 mailbox-right">
+
+
+						<div class="mail-env">
+							<!-- mail table -->
+							<table class="table mail-table" style="table-layout:fixed;">
+							
+								<!-- mail table header -->
+								<thead>
+									<tr>
+										<th>Receiver</th>
+										<th>Subject</th>
+										<th>Content</th>
+										<th>Time</th>
+									</tr>
+								</thead>
+								
+								<!-- email list -->
+								<tbody>
+									
+																			
 											<?php
 												$x = 0; //x is the number of displayed objects.
 											?> 
-											@foreach($jobs as $job)
+											@foreach($messages as $message)
 											<?php
 												if(isset($_SESSION['email']))
 												{  
-													if($job->email !== $_SESSION['email'])
+													if($message->sender == $_SESSION['email'])
 													{
-														continue;
+														$x = $x + 1;
+											?>
+														<tr>
+															<td style="word-wrap:break-word;" >{{$message->receiver}}</td>
+															<td style="word-wrap:break-word;" >{{$message->subject}}</td>
+															<td style="word-wrap:break-word;" >{{$message->content}}</td>
+															<td style="word-wrap:break-word;" >{{$message->time}}</td>
+														</tr>
+											<?php
 													}
-													$x = $x + 1;
 												}
 												else
 												{
 													continue;
 												}
 											?>
-											<tr>
-												<td>{{$job->job}}</td>
-												<td>{{$job->postTime}}</td>
-												<td>{{$job->salary}}</td>
-												<td>{{$job->location}}</td>
-												<td>{{$job->type}}</td>
-												<td>{{$job->requirements}}</td>
-												<td><a href="/publish/destroy/{{$job->id}}"><button class="btn btn-danger">Delete</button></a> </td>
-											</tr>
+
+											
 											@endforeach
-										</tbody>
-									</table>
-									<?php
-									if ( $x === 0 ) 
-									{
-										echo "<div style='text-align: center;'><h1>No search result.</h1></div>";
-									}
-									?>
-								</div>
-							</div>
+											<tr>
+												<th colspan="4" class="col-header-options">
+													<div class="mail-pagination pull-right">
+														Total: <strong>{{$x}}</strong> emails
+													</div>
+												</th>
+											</tr>
+										
+
+
+									
+								</tbody>
+								
+							</table>
+							
+						</div>
+
 						
+						
+					</div>
+					
+					<!-- Mailbox Sidebar -->
+					<div class="col-sm-3 mailbox-left">
+						
+						<div class="mailbox-sidebar">
+							
+							<a href="message" class="btn btn-block btn-secondary btn-icon btn-icon-standalone btn-icon-standalone-right">
+								<i class="linecons-mail"></i>
+								<span>Compose</span>
+							</a>
+							
+							
+							
+
+							<ul class="list-unstyled mailbox-list">
+								<li >
+									<a href="message">
+										New Mail
+									</a>
+								</li>
+								<li>
+									<a href="inbox">
+										Inbox
+<!--										<span class="badge badge-success pull-right">5</span>-->
+									</a>
+								</li>
+								<li class="active">
+									<a href="sent">
+										Sent
+									</a>
+								</li>
+							</ul>
+
+
+							
+							<div class="vspacer"></div>
+							
 						</div>
 						
 					</div>
 					
 				</div>
-			</div>
+				
+			</section>
 			<!-- Main Footer -->
 			<!-- Choose between footer styles: "footer-type-1" or "footer-type-2" -->
 			<!-- Add class "sticky" to  always stick the footer to the end of page (if page contents is small) -->
@@ -326,10 +384,9 @@
 		
 	</div>
 	
-	
-	
 
-
+	<!-- Imported styles on this page -->
+	<link rel="stylesheet" href="assets/js/wysihtml5/src/bootstrap-wysihtml5.css">
 
 	<!-- Bottom Scripts -->
 	<script src="assets/js/bootstrap.min.js"></script>
@@ -338,6 +395,11 @@
 	<script src="assets/js/joinable.js"></script>
 	<script src="assets/js/xenon-api.js"></script>
 	<script src="assets/js/xenon-toggles.js"></script>
+	<script src="assets/js/wysihtml5/lib/js/wysihtml5-0.3.0.js"></script>
+
+
+	<!-- Imported scripts on this page -->
+	<script src="assets/js/wysihtml5/src/bootstrap-wysihtml5.js"></script>
 
 
 	<!-- JavaScripts initializations and stuff -->

@@ -113,7 +113,7 @@
 							}
 						?>
 					</li>
-					<li class="active opened active">
+					<li  class="active opened active">
 						<a href="message">
 							<i class="linecons-mail"></i>
 							<span class="title">Message</span>
@@ -134,12 +134,19 @@
 
 					</li>
 					<li>
-						<a href="publish">
+						<a href="publishedJob">
 							<i class="linecons-pencil"></i>
-							<span class="title">Published</span>
+							<span class="title">PublishedJob</span>
 						</a>
 
 					</li>
+					<li>
+						<a href="publishedBusiness">
+							<i class="linecons-pencil"></i>
+							<span class="title">PublishedBusiness</span>
+						</a>
+
+					</li>	
 				</ul>
 
 			</div>
@@ -221,7 +228,7 @@
 
 				<div class="title-env">
 					<h1 class="title">Message</h1>
-					<p class="description">Message box</p>
+					<p class="description">Mailbox sidebar and composing new message</p>
 				</div>
 				
 
@@ -233,10 +240,7 @@
 					
 					<!-- Compose Email Form -->
 					<div class="col-sm-9 mailbox-right">
-						<?php
-							if(!isset($_GET['page']))
-							{
-						?>
+
 						<div class="mail-compose">
 							
 							<form method="post" role="form" action="/contact">
@@ -255,7 +259,20 @@
 								
 								<div class="form-group">
 									<label for="to">To:</label>
-									<input type="text" class="form-control" id="receiver" name="receiver" tabindex="1" />
+									<?php
+										if(isset($_GET['email']))
+										{
+									?>
+									<input type="text" class="form-control" id="receiver" name="receiver" tabindex="1" value="{{$_GET['email']}}"/>
+									<?php
+										}
+										else
+										{
+									?>
+									<input type="text" class="form-control" id="receiver" name="receiver" tabindex="1"/>
+									<?php
+										}
+									?>
 								</div>
 								
 								
@@ -282,112 +299,8 @@
 							</form>
 							
 						</div>
-						<?php
-							}
-							else if($_GET['page'] === "inbox")
-							{
-						?>
-						<div class="mail-env">
-							<!-- mail table -->
-							<table class="table mail-table">
-							
-								<!-- mail table header -->
-								<thead>
-									<tr>
-										<th colspan="4" class="col-header-options">
-											<div class="mail-pagination pull-right">
-												Showing <strong>789</strong> emails
-											</div>
-										</th>
-									</tr>
-								</thead>
-								
-								<!-- email list -->
-								<tbody>
-									
-									<tr class="unread">
-										<td class="col-name">
-											<a href="#" class="star">
-												<i class="fa-star-empty"></i>
-											</a>
-											<a href="mailbox-message.html" class="col-name">Google AdWords</a>
-										</td>
-										<td class="col-subject">
-											<a href="mailbox-message.html">
-												Google AdWords: Ads not serving
-											</a>
-										</td>
-										<td class="col-options hidden-sm hidden-xs"></td>
-										<td class="col-time">08:40</td>
-									</tr>
-									
-									<tr>
-										<td class="col-name">
-											<a href="#" class="star">
-												<i class="fa-star-empty"></i>
-											</a>
-											<a href="mailbox-message.html" class="col-name">Apple.com</a>
-										</td>
-										<td class="col-subject">
-											<a href="mailbox-message.html">
-												Your apple account ID has been accessed from un-familiar location.
-											</a>
-										</td>
-										<td class="col-options hidden-sm hidden-xs"></td>
-										<td class="col-time">Today</td>
-									</tr>
-									
-								</tbody>
-								
-							</table>
-							
-						</div>
-						<?php
-							}
-							else if($_GET['page'] === "sent")
-							{
-						?>
-						<div class="mail-env">
-							<!-- mail table -->
-							<table class="table mail-table">
-							
-								<!-- mail table header -->
-								<thead>
-									<tr>
-										<th colspan="4" class="col-header-options">
-											<div class="mail-pagination pull-right">
-												Showing <strong>789</strong> emails
-											</div>
-										</th>
-									</tr>
-								</thead>
-								
-								<!-- email list -->
-								<tbody>
-									<tr>
-										<td class="col-name">
-											<a href="#" class="star">
-												<i class="fa-star-empty"></i>
-											</a>
-											<a href="mailbox-message.html" class="col-name">Apple.com</a>
-										</td>
-										<td class="col-subject">
-											<a href="mailbox-message.html">
-												Your apple account ID has been accessed from un-familiar location.
-											</a>
-										</td>
-										<td class="col-options hidden-sm hidden-xs"></td>
-										<td class="col-time">Today</td>
-									</tr>
-									
-								</tbody>
-								
-							</table>
-							
-						</div>
-						<?php
-							}
-						?>
+
+
 						
 						
 					</div>
@@ -404,10 +317,7 @@
 							
 							
 							
-							<?php
-								if(!isset($_GET['page']))
-								{
-							?>
+
 							<ul class="list-unstyled mailbox-list">
 								<li class="active">
 									<a href="message">
@@ -415,66 +325,20 @@
 									</a>
 								</li>
 								<li>
-									<a href="message?page=inbox">
+									<a href="inbox">
 										Inbox
 <!--										<span class="badge badge-success pull-right">5</span>-->
 									</a>
 								</li>
 								<li>
-									<a href="message?page=sent">
+									<a href="sent">
 										Sent
 									</a>
 								</li>
 							</ul>
-							<?php
-								}
-								else if($_GET['page'] === "inbox")
-								{
-							?>
-							<ul class="list-unstyled mailbox-list">
-								<li>
-									<a href="message">
-										New Mail
-									</a>
-								</li>
-								<li class="active">
-									<a href="message?page=inbox">
-										Inbox
-<!--										<span class="badge badge-success pull-right">5</span>-->
-									</a>
-								</li>
-								<li>
-									<a href="message?page=sent">
-										Sent
-									</a>
-								</li>
-							</ul>
-							<?php
-								}
-								else if($_GET['page'] === "sent")
-								{
-							?>
-							<ul class="list-unstyled mailbox-list">
-								<li>
-									<a href="message">
-										New Mail
-									</a>
-								</li>
-								<li>
-									<a href="message?page=inbox">
-										Inbox
-<!--										<span class="badge badge-success pull-right">5</span>-->
-									</a>
-								</li>
-								<li class="active">
-									<a href="message?page=sent">
-										Sent
-									</a>
-								</li>
-							</ul>
-							<?php
-								}
-							?>
+
+
+
 							
 							<div class="vspacer"></div>
 							

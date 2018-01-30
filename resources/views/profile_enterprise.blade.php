@@ -113,9 +113,16 @@
 
 					</li>
 					<li>
-						<a href="publish">
+						<a href="publishedJob">
 							<i class="linecons-pencil"></i>
-							<span class="title">Published</span>
+							<span class="title">PublishedJob</span>
+						</a>
+
+					</li>
+					<li class="">
+						<a href="publishedBusiness">
+							<i class="linecons-pencil"></i>
+							<span class="title">PublishedBusiness</span>
 						</a>
 
 					</li>

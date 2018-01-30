@@ -147,7 +147,7 @@
 							<div class="row" style="margin-top:10px">	
 								<div class="col-sm-1"></div>
 								<div class="col-sm-10">
-									<div class="col-sm-10"><strong> Balance: $500,00.00</strong></div>
+									<div class="col-sm-10"><strong> Balance: ${{$_POST['amount']}}</strong></div>
 									<br>
 									<hr>
 								</div>
@@ -227,15 +227,9 @@
 												if($num === 0)
 												{
 											?>
+												
 												<div class="row">
-													<div class="col-sm-1"></div>
-													<div class="col-sm-2">
-														<div class="radio">
-															<label>
-																You haven't store any card information.
-															</label>
-														</div>
-													</div>
+													<div class="col-sm-10">You haven't store any card information.</div>
 												</div>
 											<?php
 												}
@@ -344,7 +338,36 @@
 								</div>		
 										
 							</div>	
-							
+							<?php
+								if($_POST['postType'] === "job")
+								{
+							?>
+								<input type="hidden" class="form-control" id="title" name="title" placeholder="job title" value="{{$_POST['title']}}">
+								<input type="hidden" class="form-control" id="salary" name="salary" placeholder="salary" value="{{$_POST['salary']}}">
+								<input type="hidden" class="form-control" id="type" name="type" placeholder="job type" value="{{$_POST['type']}}">
+								<input type="hidden" class="form-control" id="location" name="location" placeholder="location" value="{{$_POST['location']}}">
+								<input type="hidden" class="form-control" id="vacancy" name="vacancy" placeholder="vacancy" value="{{$_POST['vacancy']}}">
+								<textarea style="display:none;resize: none;" class="form-control" id="requirements" name="requirements" cols="5">{{$_POST['requirements']}}</textarea>
+								<textarea style="display:none;resize: none;" class="form-control" id="detail" name="detail" cols="5">{{$_POST['detail']}}</textarea>
+								<input type="hidden" class="form-control" name="amount" value="{{$_POST['amount']}}">
+								<input type="hidden" class="form-control" name="postType" value="job">
+							<?php	
+								}
+								else
+								{
+							?>
+								<input type="hidden" class="form-control" id="title" name="title" placeholder="business title" value="{{$_POST['title']}}">
+								<input type="hidden" class="form-control" id="industry" name="industry" placeholder="business industry" value="{{$_POST['industry']}}">
+								<input type="hidden" class="form-control" id="location" name="location" placeholder="Location" value="{{$_POST['location']}}" >
+								<input type="hidden" class="form-control" name="position" value="{{$_POST['position']}}" >
+								<input type="hidden" class="form-control" name="neededPosition" value="{{$_POST['neededPosition']}}" >
+								<textarea style="display:none;resize: none;" class="form-control" id="requirements" name="requirements" cols="5">{{$_POST['requirements']}}</textarea>
+								<textarea style="display:none;resize: none;" class="form-control" id="detail" name="detail" cols="5">{{$_POST['detail']}}</textarea>
+								<input type="hidden" class="form-control" name="amount" value="{{$_POST['amount']}}">
+								<input type="hidden" class="form-control" name="postType" value="business">
+							<?php	
+								}
+							?>
 
 						<div class="box-footer">
 							<div class="pull-left">

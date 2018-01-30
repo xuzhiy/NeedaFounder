@@ -36,8 +36,7 @@
 	{
 		$status = 2;
 	}
-	$adSize = $_POST['radio-1'];
-	$priority = $_POST['radio-2'];
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -53,6 +52,8 @@
 
 	<!-- Include all compiled plugins (below), or include individual files as needed --> 
 	<script src="js/bootstrap.min.js"></script>
+
+	<script src="js/publish.js"></script>
    
     <!-- styles -->
     <link href="css/font-awesome.css" rel="stylesheet">
@@ -111,8 +112,8 @@
 					<form method="post" action="/post3" class="form-horizontal" enctype="multipart/form-data" role="form">
 					{{ csrf_field() }}
 						<ul class="nav nav-pills nav-justified">
-							<li>
-								<a href="post1">
+							<li class="disabled">
+								<a href="#">
 									<span>STEP 1: </span>
 									<br>
 									<span>Select Package</span>
@@ -153,7 +154,8 @@
 										<label class="col-sm-3 control-label" for="title">Job:*</label>
 									
 										<div class="col-sm-9">
-											<input type="text" class="form-control" id="title" name="title" placeholder="job title">
+											<input type="text" class="form-control" id="title" name="title" placeholder="job title" onblur="verify_publish()">
+											<label style="color: red" id="verify_title"></label>
 										</div>
 									</div>
 								</div>
@@ -168,7 +170,8 @@
 										<label class="col-sm-3 control-label" for="salary">Salary:*</label>
 									
 										<div class="col-sm-9">
-											<input type="text" class="form-control" id="salary" name="salary" placeholder="salary">
+											<input type="text" class="form-control" id="salary" name="salary" placeholder="salary" onblur="verify_publish()">
+											<label style="color: red" id="verify_salary"></label>
 										</div>
 									</div>
 								</div>
@@ -183,7 +186,8 @@
 										<label class="col-sm-3 control-label" for="type">Job type:*</label>
 									
 										<div class="col-sm-9">
-											<input type="text" class="form-control" id="type" name="type" placeholder="job type">
+											<input type="text" class="form-control" id="type" name="type" placeholder="job type" onblur="verify_publish()">
+											<label style="color: red" id="verify_type"></label>
 										</div>
 									</div>
 								</div>
@@ -198,7 +202,8 @@
 										<label class="col-sm-3 control-label" for="location">Location:*</label>
 									
 										<div class="col-sm-9">
-											<input type="text" class="form-control" id="location" name="location" placeholder="location">
+											<input type="text" class="form-control" id="location" name="location" placeholder="location" onblur="verify_publish()">
+											<label style="color: red" id="verify_location"></label>
 										</div>
 									</div>
 								</div>
@@ -213,7 +218,8 @@
 										<label class="col-sm-3 control-label" for="vacancy">Vacancy:*</label>
 									
 										<div class="col-sm-9">
-											<input type="text" class="form-control" id="vacancy" name="vacancy" placeholder="vacancy">
+											<input type="text" class="form-control" id="vacancy" name="vacancy" placeholder="vacancy" onblur="verify_publish()">
+											<label style="color: red" id="verify_vacancy"></label>
 										</div>
 									</div>
 								</div>
@@ -228,7 +234,8 @@
 										<label class="col-sm-3 control-label" for="requirements">Requirements:*</label>
 									
 										<div class="col-sm-9">
-											<input type="text" class="form-control" id="requirements" name="requirements" placeholder="requirements">
+											<textarea style="resize: none;" class="form-control" id="requirements" name="requirements" cols="5" onblur="verify_publish()"></textarea>
+											<label style="color: red" id="verify_requirements"></label> 
 										</div>
 									</div>
 								</div>
@@ -243,17 +250,21 @@
 										<label class="col-sm-3 control-label" for="detail">Job Detail:*</label>
 									
 										<div class="col-sm-9">
-											<textarea style="resize: none;" class="form-control" id="detail" name="detail" cols="5"></textarea>
+											<textarea style="resize: none;" class="form-control" id="detail" name="detail" cols="5" onblur="verify_publish()"></textarea>
+											<label style="color: red" id="verify_detail"></label>
 										</div>
 									</div>
 								</div>
 							</div>
 
 						</div>
-
+						
+						<input type="hidden" class="form-control" name="amount" value="{{$_POST['amount']}}">
+						<input type="hidden" name="size" value="{{$_POST['radio-1']}}">
+						
 						<div class="box-footer">
 							<div class="pull-left">
-								<a href="post1" class="btn btn-default"><i class="fa fa-chevron-left"></i>Last Step</a>
+								<a href="post1" class="btn btn-default"><i class="fa fa-chevron-left"></i>Re-post</a>
 							</div>
 							<div class="pull-right">
 								<button type="submit" class="btn btn-primary">Next Step<i class="fa fa-chevron-right"></i></button>

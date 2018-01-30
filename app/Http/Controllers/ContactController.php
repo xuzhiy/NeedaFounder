@@ -2,13 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
-
-use App\Http\Requests\ContactMeRequest;
-use Illuminate\Support\Facades\Mail;
+use Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use App\Model\user;
+use App\Model\job;
+use App\Model\message;
+use App\Model\business;
+use App\Model\enterprise;
+use App\Model\history;
+use App\Model\enterprise_account;
 
 class ContactController extends Controller
 {
@@ -17,34 +22,53 @@ class ContactController extends Controller
      *
      * @return View
      */
-    public function showForm()
-    {
-        return view('blog.contact');
+
+    public function contact(){
+		// Get infor from database
+		$users = user::all();
+		$enterprisea = enterprise_account::all();
+
+		return view('message', compact( 'users', 'enterprisea'));
     }
 
-    /**
-     * Email the contact request
-     *
-     * @param ContactMeRequest $request
-     * @return Redirect
-     */
-    public function sendContactInfo(ContactMeRequest $request)
-    {
-        $data = $request->only('name', 'receiver', 'subject');
-        $data['messageLines'] = explode("\n", $request->get('message'));
+    public function send() {
 
-        Mail::send('emails.contact', $data, function ($message) use ($data) {
-            $message->subject('Blog Contact Form: '.$data['name'])
-              ->to(config('blog.contact_email'))
-              ->replyTo($data['email']);
-        });
+        if(!isset($_SESSION)){
+            session_start();
+        }
+        $para=Request::all();
+        $users = user::all();
+        $messages = message::all();
 
-        return back()
-            ->withSuccess("Thank you for your message. It has been sent.");
+
+        $receiver = Request::input('receiver');
+        $subject = Request::input('subject');
+        $message = Request::input('message');
+        $time = date('Y-m-j');
+        $sender =$_SESSION['email'];
+    
+        DB::insert('insert into message(receiver,subject,content,time,sender) values(?,?,?,?,?)', array($receiver,$subject,$message,$time,$sender));
+		
+		$enterprisea = enterprise_account::all();
+        return view('/message', compact('users', 'messages', 'enterprisea'));
+
+
     }
+
+    public function inbox(){
+        $users = user::all();
+        $messages = message::all();
+		$enterprisea = enterprise_account::all();
+        return view('/inbox', compact('users', 'messages', 'enterprisea'));
+
+    }
+
+    public function sent(){
+        $users = user::all();
+        $messages = message::all();
+		$enterprisea = enterprise_account::all();
+        return view('/sent', compact('users', 'messages', 'enterprisea'));
+
+    }
+
 }
-
-
-
-
-

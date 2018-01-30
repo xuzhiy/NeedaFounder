@@ -15,7 +15,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::post('contact', 'ContactController@sendContactInfo');
+Route::get('message', 'ContactController@contact'); 
+
+Route::post('message', 'ContactController@contact'); 
+
+Route::post('contact', 'ContactController@send');
 
 Route::get('/post2business', 'JobController@post2business');
 
@@ -25,15 +29,34 @@ Route::post('/post3', 'JobController@add');
 
 Route::get('/post3', 'JobController@add');
 
+Route::post('/post3business', 'JobController@addbusiness');
+
+Route::get('/post3business', 'JobController@addbusiness');
+
 Route::get('/publish/destroy/{id}', 'JobController@destroy');
 
-Route::get('/publish', 'JobController@index');
+Route::get('/publishedBusiness/destroy/{id}', 'JobController@destroyBusiness');
 
-Route::post('/publish', 'JobController@index');
+Route::get('/publishedJob', 'JobController@index');
+
+Route::post('/publishedJob', 'JobController@index');
+
+Route::get('/publishedBusiness', 'JobController@show');
+
+Route::post('/publishedBusiness', 'JobController@show');
 
 Route::post('/post2','JobController@post2');
 
 Route::get('/post2','JobController@post2');
+
+Route::post('/inbox','ContactController@inbox');
+
+Route::get('/inbox','ContactController@inbox');
+
+Route::get('/sent','ContactController@sent');
+
+Route::post('/sent','ContactController@sent');
+
 
 
 

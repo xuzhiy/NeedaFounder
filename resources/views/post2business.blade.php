@@ -49,6 +49,8 @@
    	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
 	<script src="js/jquery-3.2.1.min.js"></script>
 
+	<script src="js/business.js"></script>
+
 	<!-- Include all compiled plugins (below), or include individual files as needed --> 
 	<script src="js/bootstrap.min.js"></script>
    
@@ -106,11 +108,11 @@
 			<div class="col-md-12">
 
 				<div class="box">
-					<form method="post" action="post3" class="form-horizontal" enctype="multipart/form-data" role="form">
+					<form method="post" action="post3business" class="form-horizontal" enctype="multipart/form-data" role="form">
 					{{ csrf_field() }}
 						<ul class="nav nav-pills nav-justified">
-							<li>
-								<a href="post1">
+							<li class="disabled">
+								<a href="#">
 									<span>STEP 1: </span>
 									<br>
 									<span>Select Package</span>
@@ -151,7 +153,8 @@
 										<label class="col-sm-3 control-label" for="title">Business Title:*</label>
 									
 										<div class="col-sm-9">
-											<input type="text" class="form-control" id="title" name="title" placeholder="business title">
+											<input type="text" class="form-control" id="title" name="title" placeholder="business title" onblur="verify_publish()">
+											<label style="color: red" id="verify_title"></label>
 										</div>
 									</div>
 								</div>
@@ -163,10 +166,11 @@
 								
 								<div class="col-sm-9">
 									<div class="form-group">
-										<label class="col-sm-3 control-label" for="wage">Wage:*</label>
+										<label class="col-sm-3 control-label" for="industry">Business Industry:*</label>
 									
 										<div class="col-sm-9">
-											<input type="text" class="form-control" id="wage" name="wage" placeholder="wage">
+											<input type="text" class="form-control" id="industry" name="industry" placeholder="business industry" onblur="verify_publish()">
+											<label style="color: red" id="verify_industry"></label>
 										</div>
 									</div>
 								</div>
@@ -178,10 +182,11 @@
 								
 								<div class="col-sm-9">
 									<div class="form-group">
-										<label class="col-sm-3 control-label" for="field">Business Field:*</label>
+										<label class="col-sm-3 control-label" for="location">Location:*</label>
 									
 										<div class="col-sm-9">
-											<input type="text" class="form-control" id="field" name="field" placeholder="business field">
+											<input type="text" class="form-control" id="location" name="location" placeholder="Location" onblur="verify_publish()">
+											<label style="color: red" id="verify_location"></label>
 										</div>
 									</div>
 								</div>
@@ -193,10 +198,17 @@
 								
 								<div class="col-sm-9">
 									<div class="form-group">
-										<label class="col-sm-3 control-label" for="technique">Technique Required:*</label>
+										<label class="col-sm-3 control-label" for="position">Position:*</label>
 									
 										<div class="col-sm-9">
-											<input type="text" class="form-control" id="technique" name="technique" placeholder="technique required">
+											<select name="position">
+											   <option>Entrepreneur</option>
+											   <option>Business Partner</option>
+											   <option>Co Founder</option>
+											   <option>Collaborator</option>
+											   <option>Investor</option>
+											   <option>Advisor</option>
+										   </select>
 										</div>
 									</div>
 								</div>
@@ -208,10 +220,33 @@
 								
 								<div class="col-sm-9">
 									<div class="form-group">
-										<label class="col-sm-3 control-label" for="language">Language Required:*</label>
+										<label class="col-sm-3 control-label" for="neededPosition">NeededPosition:*</label>
 									
 										<div class="col-sm-9">
-											<input type="text" class="form-control" id="language" name="language" placeholder="language required">
+											<select name="neededPosition">
+											   <option>Entrepreneur</option>
+											   <option>Business Partner</option>
+											   <option>Co Founder</option>
+											   <option>Collaborator</option>
+											   <option>Investor</option>
+											   <option>Advisor</option>
+										   </select>
+										</div>
+									</div>
+								</div>
+							</div>
+							<br>
+							
+							<div class="row">	
+								<div class="col-sm-1"></div>
+								
+								<div class="col-sm-9">
+									<div class="form-group">
+										<label class="col-sm-3 control-label" for="requirements">Requirements:*</label>
+									
+										<div class="col-sm-9">
+											<textarea style="resize: none;" class="form-control" id="requirements" name="requirements" cols="5" onblur="verify_publish()"></textarea>
+											<label style="color: red" id="verify_requirements"></label> 
 										</div>
 									</div>
 								</div>
@@ -226,7 +261,8 @@
 										<label class="col-sm-3 control-label" for="detail">Business Detail:*</label>
 									
 										<div class="col-sm-9">
-											<textarea style="resize: none;" class="form-control" id="detail" name="detail" cols="5"></textarea>
+											<textarea style="resize: none;" class="form-control" id="detail" name="detail" cols="5" onblur="verify_publish()"></textarea>
+											<label style="color: red" id="verify_detail"></label>
 										</div>
 									</div>
 								</div>
@@ -234,9 +270,12 @@
 
 						</div>
 
+						<input type="hidden" class="form-control" name="amount" value="{{$_POST['amount']}}">
+						<input type="hidden" name="size" value="{{$_POST['radio-1']}}">
+					
 						<div class="box-footer">
 							<div class="pull-left">
-								<a href="post1" class="btn btn-default"><i class="fa fa-chevron-left"></i>Last Step</a>
+								<a href="post1" class="btn btn-default"><i class="fa fa-chevron-left"></i>Re-post</a>
 							</div>
 							<div class="pull-right">
 								<button type="submit" class="btn btn-primary">Next Step<i class="fa fa-chevron-right"></i></button>

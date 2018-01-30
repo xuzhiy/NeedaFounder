@@ -50,6 +50,12 @@
 <link href="css/owl.theme.css" rel="stylesheet">
 <link href="css/style.default.css" rel="stylesheet" id="theme-stylesheet">
 <title>Detail</title>
+
+	<style>
+
+
+
+	</style>
 </head>
 <body>
 <div class="navbar navbar-default yamm" role="navigation" id="navbar" style="background-color:#a1a1a1">
@@ -86,7 +92,12 @@
 	</div>
 <div class="container">
 	<div class="row jumbotron">
-		<div class="col-xs-4 item-photo"> <img style="max-width:100%;" src="img/jobs.png" /> </div>
+		<div class="col-xs-4 item-photo"> <img style="max-width:100%;" src="img/jobs.png" />
+							
+					
+		<small>&nbsp;&nbsp;&nbsp;&nbsp;Contact&nbsp;provider: <a href="/message?email={{$data->email}}"><link>{{$data->email}}</like></a></small>
+					
+		 </div>
 		<div class="col-xs-6" style="border:0px solid gray">
 			<h2><b>{{$data->job}}</b></h2>
 			<br>
@@ -97,20 +108,7 @@
 				</tr>
 				<tr>
 					<td><h6 class="title-price" style="color: gray">Type: {{$data->type}}</h6></td>
-					<?php
-						if($data->vacancy !== "1")
-						{
-					?>
 					<td><h6 class="title-price" style="color: gray">People needed: {{$data->vacancy}} people</h6></td>
-					<?php
-						}
-						else
-						{
-					?>
-					<td><h6 class="title-price" style="color: gray">People needed: {{$data->vacancy}} person</h6></td>
-					<?php
-						}
-					?>
 				</tr>
 				<tr></tr>
 			</table>

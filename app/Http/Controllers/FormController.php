@@ -445,6 +445,7 @@ class FormController extends Controller
 		
 		// Get infor from database
 		$users = user::all();
+		$enterprisea = enterprise_account::all();
 		$cards = card::all();
 		$payments = payment::all();
 		
@@ -497,6 +498,7 @@ class FormController extends Controller
 						{
 							$payment_id = $payment_id + 1;
 						}
+						$amount = $input['amount'];
 						$owner = $_SESSION['email'];
 						$date = date('Y-m-d');
 
@@ -520,10 +522,73 @@ class FormController extends Controller
 							DB::insert('insert into card(id,holder,number,expire,type,owner) values(?,?,?,?,?,?)',[$cardID,$holder,$encode_number,$expire,$type,$_SESSION['email']]);
 
 							//Store the payment information into the database.
-
+							DB::insert('insert into payment(id,amount,cardID,user,date,cvv) values(?,?,?,?,?,?)',[$payment_id,$amount,$cardID,$owner,$date,$encode_cvv]);
 
 							//Store the post information into the database.
+							if($input['postType'] === "job")	// post for job
+							{
+								$id = date('YmdHis');
+								$postTime = date('Y-m-j');
 
+								$title =Request::input('title');
+								$salary = Request::input('salary');
+								$job_type =Request::input('type');
+								$location =Request::input('location');
+								$vacancy =Request::input('vacancy');
+								$requirements =Request::input('requirements');
+								$content =Request::input('detail');
+								$email =$_SESSION['email'];
+								$company = "";
+								
+								$z = 0; //z=1 when it's normal account. z=2 when it's enterprise account.
+								foreach($users as $user)
+								{
+									if($user->email === $_SESSION['email'])
+									{
+										$z = 1;
+										if($user->enterprise !== null)
+										{
+											$company = $user->enterprise;
+											DB::insert('insert into job(email,contact,id,type,job,vacancy,company,requirements,content,salary,location,postTime) values(?,?,?,?,?,?,?,?,?,?,?,?)', array($email,$email,$id,$job_type,$title,$vacancy,$company,$requirements,$content,$salary,$location,$postTime));
+										}
+										break;
+									}
+								}
+								if($z === 0)
+								{
+									foreach($enterprisea as $enterprise_account)
+									{
+										if($enterprise_account->email === $_SESSION['email'])
+										{
+											$z = 2;
+											$company = $enterprise_account->name;
+											DB::insert('insert into job(email,contact,id,type,job,vacancy,company,requirements,content,salary,location,postTime) values(?,?,?,?,?,?,?,?,?,?,?,?)', array($email,$email,$id,$job_type,$title,$vacancy,$company,$requirements,$content,$salary,$location,$postTime));
+											break;
+										}
+									}
+								}
+								if($z === 0)
+								{
+									DB::insert('insert into job(email,contact,id,type,job,vacancy,requirements,content,salary,location,postTime) values(?,?,?,?,?,?,?,?,?,?,?)', array($email,$email,$id,$job_type,$title,$vacancy,$requirements,$content,$salary,$location,$postTime));
+								}
+							}
+							else			// post for business
+							{
+								$id = date('YmdHis');
+								$postTime = date('Y-m-j');
+
+								$title =Request::input('title');
+								$location =Request::input('location');
+								$industry =Request::input('industry');
+								$position =Request::input('position');
+								$neededPosition =Request::input('neededPosition');
+								$requirements =Request::input('requirements');
+								$content =Request::input('detail');
+								$email =$_SESSION['email'];
+
+								DB::insert('insert into business(email,id,industry,title,requirements,content,location,postTime,position,neededPosition) values(?,?,?,?,?,?,?,?,?,?)', array($email,$id,$industry,$title,$requirements,$content,$location,$postTime,$position,$neededPosition));
+							}
+							
 							echo "<script>alert('Post successfully.');parent.location.href='/homepage'; </script>";
 						}
 						else
@@ -555,11 +620,76 @@ class FormController extends Controller
 				$owner = $_SESSION[ 'email' ];
 				$date = date( 'Y-m-d' );
 				$cvv = $input['card_cvv'];
+				$amount = $input['amount'];
+				$encode_cvv = base64_encode($cvv);
 				//Store the payment information into the database.
-
+				DB::insert('insert into payment(id,amount,cardID,user,date,cvv) values(?,?,?,?,?,?)',[$payment_id,$amount,$cardID,$owner,$date,$encode_cvv]);
 
 				//Store the post information into the database.
+				if($input['postType'] === "job")	// post for job
+				{
+					$id = date('YmdHis');
+					$postTime = date('Y-m-j');
 
+					$title =Request::input('title');
+					$salary = Request::input('salary');
+					$job_type =Request::input('type');
+					$location =Request::input('location');
+					$vacancy =Request::input('vacancy');
+					$requirements =Request::input('requirements');
+					$content =Request::input('detail');
+					$email =$_SESSION['email'];
+					$company = "";
+
+					$z = 0; //z=1 when it's normal account. z=2 when it's enterprise account.
+					foreach($users as $user)
+					{
+						if($user->email === $_SESSION['email'])
+						{
+							$z = 1;
+							if($user->enterprise !== null)
+							{
+								$company = $user->enterprise;
+								DB::insert('insert into job(email,contact,id,type,job,vacancy,company,requirements,content,salary,location,postTime) values(?,?,?,?,?,?,?,?,?,?,?,?)', array($email,$email,$id,$job_type,$title,$vacancy,$company,$requirements,$content,$salary,$location,$postTime));
+							}
+							break;
+						}
+					}
+					if($z === 0)
+					{
+						foreach($enterprisea as $enterprise_account)
+						{
+							if($enterprise_account->email === $_SESSION['email'])
+							{
+								$z = 2;
+								$company = $enterprise_account->name;
+								DB::insert('insert into job(email,contact,id,type,job,vacancy,company,requirements,content,salary,location,postTime) values(?,?,?,?,?,?,?,?,?,?,?,?)', array($email,$email,$id,$job_type,$title,$vacancy,$company,$requirements,$content,$salary,$location,$postTime));
+								break;
+							}
+						}
+					}
+					if($z === 0)
+					{
+						DB::insert('insert into job(email,contact,id,type,job,vacancy,requirements,content,salary,location,postTime) values(?,?,?,?,?,?,?,?,?,?,?)', array($email,$email,$id,$job_type,$title,$vacancy,$requirements,$content,$salary,$location,$postTime));
+					}
+				}
+				else			// post for business
+				{
+					$id = date('YmdHis');
+					$postTime = date('Y-m-j');
+
+					$title =Request::input('title');
+					$location =Request::input('location');
+					$industry =Request::input('industry');
+					$position =Request::input('position');
+					$neededPosition =Request::input('neededPosition');
+					$requirements =Request::input('requirements');
+					$content =Request::input('detail');
+					$email =$_SESSION['email'];
+
+					DB::insert('insert into business(email,id,industry,title,requirements,content,location,postTime,position,neededPosition) values(?,?,?,?,?,?,?,?,?,?)', array($email,$id,$industry,$title,$requirements,$content,$location,$postTime,$position,$neededPosition));
+				}
+				echo "<script>alert('Post successfully.');parent.location.href='/homepage'; </script>";
 			}
 		}
 	
