@@ -199,7 +199,7 @@
 			<div class="col-sm-6" style="height: 200px">
 				<div class="jobtitle"><a href="enterpriseDetail?id={{$data->id}}">{{$data->name}}</a>
 				</div>
-				<div class="jobcontent">{{$data->content}}</div>
+				<div class="jobcontent">{{$data->background}}</div>
 			</div>
 			<div class="col-sm-2 all_center joblocation" style="height: 150px"><img src="img/pin_green_25px_1129789_easyicon.net.png" width="12"> {{$data->location}}</div>
 		</div>

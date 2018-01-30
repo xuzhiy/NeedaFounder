@@ -114,7 +114,7 @@
 					</li>
 					<li>
 						<a href="publish">
-							<i class="linecons-database"></i>
+							<i class="linecons-pencil"></i>
 							<span class="title">Published</span>
 						</a>
 
@@ -203,7 +203,7 @@
 				
 				<div class="title-env">
 					<h1 class="title">Enterprise Profile</h1>
-					<p class="description">Plain text boxes, select dropdowns and other basic form profile</p>
+					<p class="description">Your profile</p>
 				</div>
 
 			</div>
@@ -267,7 +267,7 @@
 					
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<h3 class="panel-title">Change enterprise information</h3>
+							<h3 class="panel-title">Change enterprise account information</h3>
 						</div>
 						<div class="panel-body">
 							
@@ -321,6 +321,80 @@
 					
 				</div>
 			</div>
+			
+			
+			
+			
+			
+			
+			
+			<div class="row">
+				<div class="col-sm-12">
+					
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">Change enterprise information</h3>
+						</div>
+						<div class="panel-body">
+							
+							<form action="changeEnterprise" method="post" role="form" class="form-horizontal">
+								{{ csrf_field() }}
+								<div class="form-group">
+									<label class="col-sm-2 control-label" for="field-1">Enterprise Name</label>
+									
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="field-1" value="{{$enterprise->name}}" readonly name="name">
+									</div>
+								</div>
+								
+								<div class="form-group-separator"></div>
+
+								<div class="form-group">
+									<label class="col-sm-2 control-label" for="field-4">Location</label>
+
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="field-1" value="{{$enterprise->location}}" name="location">
+										
+									</div>
+								</div>
+
+								<div class="form-group-separator"></div>
+								
+								<div class="form-group">
+									<label class="col-sm-2 control-label" for="field-5">Background</label>
+									
+									<div class="col-sm-10">
+										<textarea class="form-control" data-html="false" data-color="false" style="resize: none;" data-stylesheet-url="assets/css/wysihtml5-color.css" name="background">{{$enterprise->background}}</textarea>
+									</div>
+								</div>
+								
+								<div class="form-group-separator"></div>
+								
+								<div class="form-group">
+									<label class="col-sm-2 control-label" for="field-6">Industry</label>
+									
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="field-6" value="{{$enterprise->industry}}" name="industry">
+									</div>
+								</div>
+								
+								<div class="form-group" style="margin:0 auto;">
+									<button type="submit" class="button black">Submit</button>
+								</div>
+							</form>
+							
+						</div>
+					</div>
+					
+				</div>
+			</div>
+			
+			
+			
+			
+			
+			
+			
 			@endforeach
 			
 

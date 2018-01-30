@@ -147,125 +147,148 @@
 								</a>
 							</li>
 						</ul>
-						<!--Package view-->
-						<div class="col-sm-12">
-							<br>
-							<h3>Choose your plan</h3>
-							<div class="col-sm-3"><h5>Our package provided</h5></div>
-							<div class="col-sm-9">
 
-							</div>
-						</div>
-						<!--Price chart model-->
-						<div class="col-sm-12">
+						<div class="content">
 							<hr>
-							<br>
-							<h3>Choose your plan</h3>
-							<div class="col-sm-3"><h5>Our plan model</h5></div>
-							<div class="col-sm-9">
-									<!-- Basic Table -->
-									<strong></strong>
-									<table class="table responsive">
-										<thead>
-										<tr>
-											<th>AD Size</th>
-											<th>Basic</th>
-											<th>Medium</th>
-											<th>Large</th>
-										</tr>
-										</thead>
+							<!--Package view-->
+							<div class="row">	
+								<div class="col-sm-1"></div>
+								<div class="col-sm-10">
+									
+									<h3>Choose your plan</h3>
+									<div class="col-sm-3"><h5>Our package provided</h5></div>
+									<div class="col-sm-9">
 
-										<tbody>
-										<tr>
-											<td>Price</td>
-											<td>$10</td>
-											<td>$20</td>
-											<td>$30</td>
-										</tr>
-										<br>
-										<tr>
-											<td>Priority of AD</td>
-											<td>Forward</td>
-											<td>Medium</td>
-											<td>None</td>
-										</tr>
-
-										<tr>
-											<td>Price</td>
-											<td>$10</td>
-											<td>$20</td>
-											<td>$30</td>
-										</tr>
-
-
-										</tbody>
-									</table>
+									</div>
 								</div>
-							<br>
-						</div>
-						<!--choose button-->
-						<div class="col-sm-12">
-							<div class="col-sm-3"><strong>AD size</strong></div>
-							<div class="col-sm-9">
-								<p>
-									<label class="radio-inline">
-										<input type="radio" name="radio-1" checked value="10">
-										Basic: $10
-									</label>
-									<label class="radio-inline">
-										<input type="radio" name="radio-1" value="20">
-										Medium: $20
-									</label>
-									<label class="radio-inline">
-										<input type="radio" name="radio-1" value="30">
-										Large: $30
-									</label>
-								</p>
 							</div>
-						</div>
+							<!--Price chart model-->
+							<div class="row">	
+								<div class="col-sm-1"></div>
+								<div class="col-sm-10">
+									<hr>
+									
+									<h3>Choose your plan</h3>
+									<div class="col-sm-3"><h5>Our plan model</h5></div>
+									<div class="col-sm-9">
+											<!-- Basic Table -->
+											<strong></strong>
+											<table class="table responsive">
+												<thead>
+												<tr>
+													<th>AD Size</th>
+													<th>Basic</th>
+													<th>Medium</th>
+													<th>Large</th>
+												</tr>
+												</thead>
 
-						<div class="col-sm-12">
-							<div class="col-sm-3"><strong>Priority</strong></div>
-							<div class="col-sm-9">
-								<p>
-									<label class="radio-inline">
-										<input type="radio" name="radio-2" checked value="30">
-										Forward: $30
-									</label>
-									<label class="radio-inline">
-										<input type="radio" name="radio-2" value="20">
-										Medium: $20
-									</label>
-									<label class="radio-inline">
-										<input type="radio" name="radio-2" value="10">
-										None: $0
-									</label>
-								</p>
+												<tbody>
+												<tr>
+													<td>Price</td>
+													<td>$10</td>
+													<td>$20</td>
+													<td>$30</td>
+												</tr>
+												<br>
+												<tr>
+													<td>Priority of AD</td>
+													<td>Forward</td>
+													<td>Medium</td>
+													<td>None</td>
+												</tr>
+
+												<tr>
+													<td>Price</td>
+													<td>$10</td>
+													<td>$20</td>
+													<td>$30</td>
+												</tr>
+
+
+												</tbody>
+											</table>
+										</div>
+									<br>
+								</div>
 							</div>
-						</div>
-						<!--Job or Business-->
-						<div class="col-sm-12">
-							<div class="col-sm-3"><strong>Type</strong></div>
-							<div class="col-sm-9">
-								<p>
-									<label class="radio-inline">
-										<input type="radio" name="radio-3" checked onclick="turn1()">
-										publish a Job
-									</label>
-									<label class="radio-inline">
-										<input type="radio" name="radio-3" onclick="turn2()">
-										join a Business
-									</label>
-								</p>
+							<!--choose button-->
+							<div class="row">	
+								<div class="col-sm-1"></div>
+								<div class="col-sm-10">
+									<div class="col-sm-3"><strong>AD size</strong></div>
+									<div class="col-sm-9">
+										<p>
+											<label class="radio-inline">
+												<input type="radio" name="radio-1" checked value="10">
+												Basic: $10
+											</label>
+											<label class="radio-inline">
+												<input type="radio" name="radio-1" value="20">
+												Medium: $20
+											</label>
+											<label class="radio-inline">
+												<input type="radio" name="radio-1" value="30">
+												Large: $30
+											</label>
+										</p>
+									</div>
+								</div>
 							</div>
-						</div>
-						<!--Total-->
-						<div class="col-sm-12">
-							<div class="col-sm-3"><strong>Total Price:</strong></div>
-							<div class="col-sm-9">
-								$30
+
+							<div class="row">	
+								<div class="col-sm-1"></div>
+								<div class="col-sm-10">
+									<div class="col-sm-3"><strong>Priority</strong></div>
+									<div class="col-sm-9">
+										<p>
+											<label class="radio-inline">
+												<input type="radio" name="radio-2" checked value="30">
+												Forward: $30
+											</label>
+											<label class="radio-inline">
+												<input type="radio" name="radio-2" value="20">
+												Medium: $20
+											</label>
+											<label class="radio-inline">
+												<input type="radio" name="radio-2" value="10">
+												None: $0
+											</label>
+										</p>
+									</div>
+								</div>
 							</div>
-						</div>
+							<!--Job or Business-->
+							<div class="row">	
+								<div class="col-sm-1"></div>
+								<div class="col-sm-10">
+									<div class="col-sm-3"><strong>Type</strong></div>
+									<div class="col-sm-9">
+										<p>
+											<label class="radio-inline">
+												<input type="radio" name="radio-3" checked onclick="turn1()">
+												publish a Job
+											</label>
+											<label class="radio-inline">
+												<input type="radio" name="radio-3" onclick="turn2()">
+												join a Business
+											</label>
+										</p>
+									</div>
+								</div>
+							</div>
+							<!--Total-->
+							<div class="row">	
+								<div class="col-sm-1"></div>
+								<div class="col-sm-10">
+									<div class="col-sm-3"><strong>Total Price:</strong></div>
+									<div class="col-sm-9">
+										$40
+									</div>
+								</div>
+							</div>
+
+						</div><!-- /.content -->
 
 						<div class="box-footer">
 							<div class="pull-right">
@@ -273,6 +296,7 @@
 								</button>
 							</div>
                         </div>
+	                    
                     </form>
 				</div> <!-- /.box -->
 				

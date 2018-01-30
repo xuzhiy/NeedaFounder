@@ -113,7 +113,7 @@
 					</li>
 					<li>
 						<a href="publish">
-							<i class="linecons-database"></i>
+							<i class="linecons-pencil"></i>
 							<span class="title">Published</span>
 						</a>
 
