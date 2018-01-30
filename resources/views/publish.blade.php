@@ -112,7 +112,7 @@
 							}
 						?>
 					</li>
-					<li class="active opened active">
+					<li>
 						<a href="message">
 							<i class="linecons-mail"></i>
 							<span class="title">Message</span>
@@ -134,7 +134,7 @@
 					</li>
 					<li class="active opened active">
 						<a href="publish">
-							<i class="linecons-mail"></i>
+							<i class="linecons-pencil"></i>
 							<span class="title">Published</span>
 						</a>
 

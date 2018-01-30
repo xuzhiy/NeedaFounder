@@ -135,7 +135,7 @@
 					</li>
 					<li>
 						<a href="publish">
-							<i class="linecons-database"></i>
+							<i class="linecons-pencil"></i>
 							<span class="title">Published</span>
 						</a>
 
@@ -221,7 +221,7 @@
 
 				<div class="title-env">
 					<h1 class="title">Message</h1>
-					<p class="description">Mailbox sidebar and composing new message</p>
+					<p class="description">Message box</p>
 				</div>
 				
 

@@ -7,6 +7,9 @@ use Request;
 use Illuminate\Support\Facades\DB;
 use App\Model\user;
 use App\Model\enterprise_account;
+use App\Model\enterprise;
+use App\Model\card;
+use App\Model\payment;
 
 class FormController extends Controller
 {
@@ -153,7 +156,14 @@ class FormController extends Controller
 		// Get infor from database
 
 		$enterprisea = enterprise_account::all();
+		$enterprises = enterprise::all();
 		$users = user::all();
+		
+		$id = 1;
+		foreach($enterprises as $enterprise)
+		{
+			$id = $id + 1;
+		}
 		
 		if(!preg_match($name_format, $input['name']))
 		{
@@ -192,6 +202,7 @@ class FormController extends Controller
 				if($input['name'] !== null && $input['email'] !== null && $input['password'] !== null)
 				{
 					DB::insert('insert into enterprise_account(name,email,password) values(?,?,?)',[$input['name'],$input['email'],sha1($input['password'])]);
+					DB::insert('insert into enterprise(id,name,contact) values(?,?,?)',[$id,$input['name'],$input['email']]);
 					session_start();
 					$_SESSION['email'] = $input['email'];
 					$_SESSION['name'] = $input['name'];
@@ -286,7 +297,6 @@ class FormController extends Controller
 		$name_format = '/^\w+$/';
 		$address_format = '/^[0-9A-Za-z\s?]+$/';
 		$phone_format = '/^[0-9]{10,14}$/';
-		$enterprise_format = '/^\w+$/';
 		
 		// Get infor from request
         $input=Request::all();
@@ -294,9 +304,13 @@ class FormController extends Controller
 		$enterprisea = enterprise_account::all();
 		$users = user::all();			
 
-		if(!preg_match($name_format, $input['name']))
+		if(!preg_match($name_format, $input['name']) && $input['name'] !== null)
 		{
 			echo "<script>alert('Name can only contain letters, numbers and underline.');history.go(-1);</script>";
+		}
+		else if($input['name'] === null)
+		{
+			echo "<script>alert('Name cannot be empty.');window.location.replace(document.referrer);</script>";
 		}
 		else if(!preg_match($address_format, $input['address']) && $input['address'] !== null)
 		{
@@ -306,42 +320,25 @@ class FormController extends Controller
 		{
 			echo "<script>alert('Telephone format is wrong.');history.go(-1);</script>";
 		}
-		else if(!preg_match($enterprise_format, $input['enterprise']) && $input['enterprise'] !== null)
-		{
-			echo "<script>alert('Enterprise name can only contain letters, numbers and underline.');history.go(-1);</script>";
-		}
 		else
 		{
+			if(!isset($_SESSION)){
+					session_start();
+				}
 
-			if($input['name'] !== null && $input['email'] !== null)
+			if($input['enterprise'] === 'None' )
 			{
-				if($input['enterprise'] === null )
-				{
-					DB::update('UPDATE user SET name = ?, address = ?, phone = ?, enterprise = ? WHERE email = ?',[$input['name'],$input['address'],$input['phone'],$input['enterprise'],$input['email']]);
-					echo "<script>alert('Change information successfully.');history.go(-1);</script>";
-				}
-				else
-				{
-					// enterpriseaccount=1 when the enterprise exist.
-					foreach($enterprisea as $enterprise_account)
-					{
-						if($enterprise_account->name === $input['enterprise'])
-						{
-							DB::update('UPDATE user SET name = ?, address = ?, phone = ?, enterprise = ? WHERE email = ?',[$input['name'],$input['address'],$input['phone'],$input['enterprise'],$input['email']]);
-							echo "<script>alert('Change information successfully.');history.go(-1);</script>";
-						}
-						else
-						{
-							echo "<script>alert('Enterprise does not exist. Please register enterprise first!');history.go(-1);</script>";
-						}
-					}
+				DB::update('UPDATE user SET name = ?, address = ?, phone = ?, enterprise = ? WHERE email = ?',[$input['name'],$input['address'],$input['phone'], null, $input['email']]);
 
-				}
-				
+				$_SESSION['name'] = $input['name'];
+
+				echo "<script>alert('Change information successfully.');window.location.replace(document.referrer);</script>";
 			}
 			else
 			{
-				echo "<script>alert('Information is incomplete.');history.go(-1);</script>";
+				$_SESSION['name'] = $input['name'];
+				DB::update('UPDATE user SET name = ?, address = ?, phone = ?, enterprise = ? WHERE email = ?',[$input['name'],$input['address'],$input['phone'],$input['enterprise'],$input['email']]);
+				echo "<script>alert('Change information successfully.');history.go(-1);</script>";
 			}
 		}
     }
@@ -356,10 +353,16 @@ class FormController extends Controller
         $input=Request::all();
 		// Get infor from database
 		$enterprisea = enterprise_account::all();
+		$users = user::all();
+		$enterprises = enterprise::all();
 		
-		if(!preg_match($name_format, $input['name']))
+		if(!preg_match($name_format, $input['name']) && $input['name'] !== null)
 		{
 			echo "<script>alert('Name can only contain letters, numbers and underline.');history.go(-1);</script>";
+		}
+		else if($input['name'] === null)
+		{
+			echo "<script>alert('Name cannot be empty.');window.location.replace(document.referrer);</script>";
 		}
 		else if(!preg_match($address_format, $input['address']) && $input['address'] !== null)
 		{
@@ -371,23 +374,194 @@ class FormController extends Controller
 		}
 		else
 		{
+			if(!isset($_SESSION)){
+					session_start();
+				}
 
-			if($input['name'] !== null && $input['email'] !== null )
+			if($input['name'] === $_SESSION['name'])
 			{
-				DB::update('UPDATE enterprise_account SET name = ?, address = ?, phone = ? WHERE email = ?',[$input['name'],$input['address'],$input['phone'],$input['email']]);
+				DB::update('UPDATE enterprise_account SET address = ?, phone = ? WHERE email = ?',[$input['address'],$input['phone'],$input['email']]);
 				echo "<script>alert('Change information successfully.');history.go(-1);</script>";
 			}
-			else
+			else if($input['name'] !== $_SESSION['name'] && $input['name'] !== null)
 			{
-				echo "<script>alert('Information is incomplete.');history.go(-1);</script>";
+				DB::update('UPDATE enterprise_account SET name = ?, address = ?, phone = ? WHERE email = ?',[$input['name'],$input['address'],$input['phone'],$input['email']]);
+
+				foreach($users as $user)
+				{
+					if($user->enterprise === $_SESSION['name'] )
+					{
+						DB::update('UPDATE user SET enterprise = ? WHERE email = ?',[$input['name'],$user->email]);
+					}
+
+				}
+				foreach($enterprises as $enterprise)
+				{
+					if($enterprise->contact === $_SESSION['email'] )
+					{
+						DB::update('UPDATE enterprise SET name = ? WHERE contact = ?',[$input['name'],$_SESSION['email']]);
+					}
+
+				}
+				$_SESSION['name'] = $input['name'];
+				echo "<script>alert('Change information successfully.');</script>";
+				echo "<script>window.location.replace(document.referrer);</script>";
 			}
+
 		}
     }
 	
-	// Send message function
-	public function send()
-	{
-		// Verify if the receiver is exist. If yes, store the message.
+	public function changeEnterprise()
+	{		
+		// Get infor from request
+        $input=Request::all();
+		// Get infor from database
+		$users = user::all();
+		$enterprises = enterprise::all();
 		
+		if(!isset($_SESSION)){
+				session_start();
+			}
+
+		DB::update('UPDATE enterprise SET location = ?, background = ?, industry = ?, postTime = ? WHERE contact = ?',[$input['location'],$input['background'],$input['industry'], date('Y-m-d'),$_SESSION['email']]);
+
+		echo "<script>alert('Change information successfully.');</script>";
+		echo "<script>window.location.replace(document.referrer);</script>";
+    }
+	
+	// Post4 function
+	public function finalPost()
+	{
+		if(!isset($_SESSION)){
+				session_start();
+			}
+		// Get infor from request
+        $input=Request::all();
+		
+		$name_format = '/^[A-Za-z\s?]+$/';
+		$number_format = '/^[0-9]{16}$/';
+		$cvv_format = '/^[0-9]{3}$/';
+		$expire_format = '/^(0[1-9]|1[0-2])\/[12]\d{3}$/';
+		
+		// Get infor from database
+		$users = user::all();
+		$cards = card::all();
+		$payments = payment::all();
+		
+		$card = $input['card'];
+		if($card === "new")
+		{
+			if(!preg_match($name_format, $input['holder']))
+			{
+				echo "<script>alert('Please follow the prompts to modify the information.');history.go(-1);</script>";
+			}
+			else if(!preg_match($number_format, $input['number']))
+			{
+				echo "<script>alert('Please follow the prompts to modify the information.');history.go(-1);</script>";
+			}
+			else if(!preg_match($expire_format, $input['expire']))
+			{
+				echo "<script>alert('Please follow the prompts to modify the information.');history.go(-1);</script>";
+			}	
+			else if(!preg_match($cvv_format, $input['cvv']))
+			{
+				echo "<script>alert('Please follow the prompts to modify the information.');history.go(-1);</script>";
+			}
+			else
+			{
+				$start = substr($input['number'],0,1);
+				if($start === "4" || $start === "5" )
+				{
+					$date = explode("/",$input['expire']);
+					if((int)$date[1] < 2018 || ((int)$date[1] === 2018 && (int)$date[0] < 2))
+					{
+						echo "<script>alert('Card expired.');history.go(-1);</script>";
+					}
+					else
+					{
+						$type = "";
+						if($start === "4")
+						{
+							$type = "Visa";
+						}
+						else
+						{
+							$type = "MasterCard";
+						}
+						$holder = $input['holder'];
+						$number = $input['number'];
+						$expire = $input['expire'];
+						$cvv = $input['cvv'];
+						$payment_id = 1;	// The id of new payment.
+						foreach ($payments as $payment)
+						{
+							$payment_id = $payment_id + 1;
+						}
+						$owner = $_SESSION['email'];
+						$date = date('Y-m-d');
+
+						$x = 0; // x=1 when the card is already exist.
+						$card_id = 1;	// The id of new card.
+						foreach ($cards as $card)
+						{
+							$card_id = $card_id + 1;
+							if(base64_decode($card->number) === $number)
+							{
+								$x = 1;
+							}
+						}
+						if($x === 0)
+						{
+							$cardID = $card_id;
+							$encode_number = base64_encode($number);
+							$encode_cvv = base64_encode($cvv);
+
+							//Store the card information into the database.
+							DB::insert('insert into card(id,holder,number,expire,type,owner) values(?,?,?,?,?,?)',[$cardID,$holder,$encode_number,$expire,$type,$_SESSION['email']]);
+
+							//Store the payment information into the database.
+
+
+							//Store the post information into the database.
+
+							echo "<script>alert('Post successfully.');parent.location.href='/homepage'; </script>";
+						}
+						else
+						{
+							echo "<script>alert('The card is already exist.');history.go(-1);</script>";
+						}
+					}
+				}
+				else
+				{
+					echo "<script>alert('Please follow the prompts to modify the information.');history.go(-1);</script>";
+				}
+			}
+		} 
+		else 
+		{
+			if(!preg_match($cvv_format, $input['card_cvv']))
+			{
+				echo "<script>alert('Please follow the prompts to modify the information.');history.go(-1);</script>";
+			}
+			else
+			{
+				$payment_id = 1; // The id of new payment.
+				foreach ( $payments as $payment ) 
+				{
+					$payment_id = $payment_id + 1;
+				}
+				$cardID = $card;
+				$owner = $_SESSION[ 'email' ];
+				$date = date( 'Y-m-d' );
+				$cvv = $input['card_cvv'];
+				//Store the payment information into the database.
+
+
+				//Store the post information into the database.
+
+			}
+		}
+	
 	}
 }

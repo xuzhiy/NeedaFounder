@@ -114,7 +114,7 @@
 					</li>
 					<li>
 						<a href="publish">
-							<i class="linecons-database"></i>
+							<i class="linecons-pencil"></i>
 							<span class="title">Published</span>
 						</a>
 
@@ -203,7 +203,7 @@
 				
 				<div class="title-env">
 					<h1 class="title">User Profile</h1>
-					<p class="description">Plain text boxes, select dropdowns and other basic form profile</p>
+					<p class="description">Your profile</p>
 				</div>
 
 			</div>
@@ -307,7 +307,9 @@
 									<label class="col-sm-2 control-label" for="field-5">Your Enterprise</label>
 									
 									<div class="col-sm-10">
-										<input type="text" class="form-control" id="field-5" value="{{$user->enterprise}}"  name="enterprise">
+										<select id="selectEnterprise" name="enterprise" style="width: 100%; height: 34px;">
+											<option selected="true">None</option>
+										</select>
 									</div>
 								</div>
 								
@@ -331,6 +333,33 @@
 					
 				</div>
 			</div>
+			
+				@foreach($enterprises as $enterprise)
+				<?php
+					if($enterprise->name === $user->enterprise)
+					{
+				?>
+					<script>
+						var obj=document.getElementById('selectEnterprise'); 
+						var op=new Option("{{$enterprise->name}}","{{$enterprise->name}}");
+						obj.options.add(op);
+						op.selected = true;
+					</script>
+				<?php
+					}
+					else
+					{
+				?>
+					<script>
+						var obj=document.getElementById('selectEnterprise'); 
+						obj.options.add(new Option("{{$enterprise->name}}","{{$enterprise->name}}"));
+					</script>
+				<?php
+					}
+				?>
+
+				@endforeach
+			
 			@endforeach
 			
 
@@ -365,8 +394,7 @@
 		</div>
 		
 	</div>
-
-
+	
 	<!-- Bottom Scripts -->
 	<script src="assets/js/bootstrap.min.js"></script>
 	<script src="assets/js/TweenMax.min.js"></script>

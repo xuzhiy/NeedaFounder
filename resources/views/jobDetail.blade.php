@@ -97,7 +97,20 @@
 				</tr>
 				<tr>
 					<td><h6 class="title-price" style="color: gray">Type: {{$data->type}}</h6></td>
+					<?php
+						if($data->vacancy !== "1")
+						{
+					?>
 					<td><h6 class="title-price" style="color: gray">People needed: {{$data->vacancy}} people</h6></td>
+					<?php
+						}
+						else
+						{
+					?>
+					<td><h6 class="title-price" style="color: gray">People needed: {{$data->vacancy}} person</h6></td>
+					<?php
+						}
+					?>
 				</tr>
 				<tr></tr>
 			</table>

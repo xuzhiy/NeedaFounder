@@ -11,6 +11,7 @@ use App\Model\business;
 use App\Model\enterprise;
 use App\Model\history;
 use App\Model\enterprise_account;
+use App\Model\card;
 
 class DisplayController extends Controller
 {
@@ -547,14 +548,27 @@ class DisplayController extends Controller
 	{
 		// Get infor from database
 		$users = user::all();
-		return view('profile_user', compact('users'));
+		$enterprises = enterprise::all();
+		return view('profile_user', compact('users', 'enterprises'));
 	}
 
 	public function profile_enterprise()
 	{
 		// Get infor from database
-		$enterprisea = enterprise_account::all();
-		return view('profile_enterprise', compact('enterprisea'));
+		if(!isset($_SESSION)){
+			session_start();
+		}
+		// Get infor from database
+		$enterprises = enterprise::all();
+		foreach($enterprises as $enterprise)
+		{
+			if($enterprise->contact === $_SESSION['email'])
+			{
+				$enterprisea = enterprise_account::all();
+				return view('profile_enterprise', compact('enterprisea', 'enterprise'));
+			}
+		}
+		
 	}
 	
 	// Display the message page
@@ -636,7 +650,8 @@ class DisplayController extends Controller
 		// Get infor from database
 		$users = user::all();
 		$enterprisea = enterprise_account::all();
-		return view('post4', compact('users','enterprisea'));
+		$cards = card::all();
+		return view('post4', compact('users','enterprisea','cards'));
 	}
 	
 	// Logout function
