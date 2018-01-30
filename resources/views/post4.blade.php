@@ -52,8 +52,6 @@
 	<!-- Include all compiled plugins (below), or include individual files as needed --> 
 	<script src="js/bootstrap.min.js"></script>
    
-   	<script src="js/card.js"></script>
-   
     <!-- styles -->
     <link href="css/font-awesome.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -108,25 +106,25 @@
 			<div class="col-md-12">
 
 				<div class="box">
-					<form method="post" action="finalPost">
+					<form method="post" action="post1">
 					{{ csrf_field() }}
 						<ul class="nav nav-pills nav-justified">
-							<li class="disabled">
-								<a href="#">
+							<li>
+								<a href="post1">
 									<span>STEP 1: </span>
 									<br>
 									<span>Select Package</span>
 								</a>
 							</li>
-							<li class="disabled">
-								<a href="#">
+							<li>
+								<a href="post2">
 									<span>STEP 2: </span>
 									<br>
-									<span>Information</span>
+									<span>Job Information</span>
 								</a>
 							</li>
-							<li class="disabled">
-								<a href="#">
+							<li>
+								<a href="post3">
 									<span>STEP 3: </span>
 									<br>
 									<span>Confirm Package</span>
@@ -157,15 +155,13 @@
 							<div class="row">	
 								<div class="col-sm-1"></div>
 								<div class="col-sm-10">
-									<div class="col-sm-10"><strong> Choose a card to pay!</strong></div>
+									<div class="col-sm-10"><strong> Choose a method start to pay!</strong></div>
 									<ul class="nav nav-tabs right-aligned" style="right-aligned">
-<!--
 										<li>
 											<a href="#paypal" data-toggle="tab">
 												<span class="hidden-xs">Paypal</span>
 											</a>
 										</li>
--->
 										<li class="active">
 											<a href="#card" data-toggle="tab">
 												<span class="hidden-xs">Card</span>
@@ -185,73 +181,24 @@
 										</div>
 										
 										<div class="tab-pane active" id="card">
-											<?php
-												$num = 0;
-											?>
-											@foreach($cards as $card)
-											<?php
-											if ( $card->owner !== $_SESSION['email'] ) 
-											{
-												continue;
-											}
-											else
-											{
-												$num = $num + 1;
-											}
-											?>
 											<div class="row">
 												<div class="col-sm-1"></div>
 												<div class="col-sm-2">
 													<div class="radio">
 														<label>
-															<input type="radio" class="card" name="card" value="{{$card->id}}">
-															{{$card->type}}
+															<input type="radio" name="card">
+															Visa
 														</label>
 													</div>
 												</div>
 												
 												<div class="col-sm-1" style="margin-top:10px">|</div>
 												
-												<div class="col-sm-3"style="margin-top:10px">Card no.
-												<?php 
-													$decodeNum = base64_decode($card->number);
-													$display = substr($decodeNum,-4);
-													echo "************".$display;
-												?>
-												</div>
-												
-												
-											</div>
-											@endforeach
-											<?php
-												if($num === 0)
-												{
-											?>
-												<div class="row">
-													<div class="col-sm-1"></div>
-													<div class="col-sm-2">
-														<div class="radio">
-															<label>
-																You haven't store any card information.
-															</label>
-														</div>
-													</div>
-												</div>
-											<?php
-												}
-											?>
-											
-											<div class="row" id="old_card" style="display: none">
-												<div class="col-sm-1"></div>
-												<div class="col-sm-2"></div>
-												<div class="col-sm-1" style="margin-top:10px"></div>
-												
-												<div class="col-sm-3"style="margin-top:10px"></div>
+												<div class="col-sm-3"style="margin-top:10px">Card no.**********0978</div>
 												
 												<div class="col-sm-4"style="margin-top:10px">
 													<label>CVV</label>
-													<input type="text" id="card_cvv" name="card_cvv" maxlength="3" placeholder="cvv" style="margin-left:10px;width:50px" onblur="verify_cvv()">
-													<label style="color: red" id="card_cvv_message"></label>
+													<input type="text" maxlength="3" placeholder="cvv" style="margin-left:10px;width:50px">
 												</div>
 												
 												
@@ -262,30 +209,22 @@
 												<div class="col-sm-2">
 													<div class="radio">
 														<label>
-															<input type="radio" class="card" name="card" value="new">
-															Add a new card:
+															<input type="radio" name="card">
+															MasterCard
 														</label>
 													</div>
+
+												</div>
+												
+												<div class="col-sm-1"style="margin-top:10px">|</div>
+												
+												<div class="col-sm-3"style="margin-top:10px">Card no.**********0102</div>
+												
+												<div class="col-sm-4"style="margin-top:10px">
+													<label>CVV</label>
+													<input type="text" maxlength="3" placeholder="cvv" style="margin-left:10px;width:50px">
 												</div>
 											</div>
-											
-											<script type="text/javascript">
-												$( function () {
-													$( ".card" ).click( function () {
-														if ( $( this ).val() === "new" ) {
-															document.getElementById('new_card').style.display = 'inline';
-															document.getElementById('old_card').style.display = 'none';
-														}
-														else
-														{
-															document.getElementById('old_card').style.display = 'inline';
-															document.getElementById('new_card').style.display = 'none';
-														}
-													} );
-												} );
-											</script>
-											
-											
 											
 										</div>
 
@@ -296,48 +235,46 @@
 								</div>
 							</div>
 
-							<div class="row" id="new_card" style="display: none">
+							<div class="row">
 								<div class="col-sm-1"></div>
 								<div class="col-sm-10" style="border-top:1px solid #000; border-left:1px solid #000;border-bottom:1px solid #000;border-right:1px solid #000;">
 								
 									<div class="col-sm-4"></div>
 									<div class="col-sm-8">
-										<h3>Add a new Card</h3>
+										<h3>Add new payment method</h3>
 										<div class="row">
 											<select style="margin-top:10px;margin-bottom:6px;width:320px">
+												<option>Choose payment method</option>
+												<option>Paypal</option>
 												<option>Card</option>
 											</select>
 										</div>
 
-										<div class="row">
-											<input type="text" id="holder" name="holder" placeholder="Cardholder's Name" style="margin-top:10px;margin-bottom:6px;width:320px" onblur="verify_card()">
-											<label style="color: red" id="holder_message"></label>
+										<div class="row">										
+											<input type="text" placeholder="Payment amount" style="margin-top:10px;margin-bottom:6px;width:320px">
+										</div>
+
+										<div class="row">	
+											<input type="text" placeholder="Cardholder's Name" style="margin-top:10px;margin-bottom:6px;width:320px">
+										</div>
+
+										<div class="row">	
+											<input type="text" placeholder="Card Number" style="margin-top:10px;margin-bottom:6px;width:320px">
 										</div>
 
 										<div class="row">
-											<input type="text" id="number" name="number" maxlength="16" placeholder="Card Number" style="margin-top:10px;margin-bottom:6px;width:320px" onblur="verify_card()">
-											<label style="color: red" id="number_message"></label>
-										</div>
-
-										<div class="row">
-											<input type="text" id="expire" name="expire" placeholder="01/2018" style="margin-top:10px;margin-bottom:6px;width:200px" onblur="verify_card()">
-											<label style="color: red" id="expire_message"></label>
+											<input type="text" placeholder="08/01/2018" style="margin-top:10px;margin-bottom:6px;width:200px">
+											<input type="text" maxlength="3" placeholder="cvv" style="margin-top:10px;margin-bottom:6px;margin-left:40px;width:80px">
 										</div>
 										
 										<div class="row">
-											<input type="text" id="cvv" name="cvv" maxlength="3" placeholder="cvv" style="margin-top:10px;margin-bottom:6px;width:200px" onblur="verify_card()">
-											<label style="color: red" id="cvv_message"></label>
-										</div>
-										<div class="row">
-											VISA and Mastercard only.
-											<div class="radio">
-												<img src="img/Visa.png" alt="Visa" height="75px" width="150px" style="display:block">
-											</div>
-											<div class="radio">
-												<img src="img/MC.png" alt="MC" height="75px" width="150px" style="display:block">
+											<div class="checkbox" style="margin-top:10px;margin-bottom:20px;margin-left:80px">
+												<label style="color:blue">
+													<input type="checkbox">
+													Save to payment book
+												</label>
 											</div>
 										</div>
-
 										
 									</div>
 	
@@ -348,10 +285,10 @@
 
 						<div class="box-footer">
 							<div class="pull-left">
-								<a href="post1" class="btn btn-default"><i class="fa fa-chevron-left"></i>Re-post</a>
+								<a href="post3" class="btn btn-default"><i class="fa fa-chevron-left"></i>Last Step</a>
 							</div>
 							<div class="pull-right">
-								<button type="submit" class="btn btn-primary">Submit the Post</button>
+								<button type="submit" class="btn btn-primary">Confirm to pay</button>
 							</div>
                         </div>
                     </form>

@@ -106,18 +106,18 @@
 			<div class="col-md-12">
 
 				<div class="box">
-					<form method="post" action="/post4">
+					<form method="post" action="/publish">
 					{{ csrf_field() }}
 						<ul class="nav nav-pills nav-justified">
-							<li class="disabled">
-								<a href="#">
+							<li>
+								<a href="post1">
 									<span>STEP 1: </span>
 									<br>
 									<span>Select Package</span>
 								</a>
 							</li>
-							<li class="disabled">
-								<a href="#">
+							<li>
+								<a href="post2">
 									<span>STEP 2: </span>
 									<br>
 									<span>Information</span>
@@ -155,7 +155,7 @@
 
 									<div class="col-sm-3" style="margin-top:10px;margin-bottom:6px"><strong>Account Type:</strong></div>
 									<div class="col-sm-7" style="margin-top:10px;margin-bottom:6px">Enterprise</div>
-									
+
 									<div class="col-sm-3" style="margin-top:6px;margin-bottom:6px"><strong>ADS size:</strong></div>
 									<div class="col-sm-7" style="margin-top:6px;margin-bottom:6px">Large</div>
 									
@@ -164,6 +164,9 @@
 									
 									<div class="col-sm-3" style="margin-top:6px;margin-bottom:6px"><strong>Price:</strong></div>
 									<div class="col-sm-7" style="margin-top:6px;margin-bottom:6px">100$</div>
+									
+									<div class="col-sm-11" style="margin-top:6px;margin-bottom:6px"></div>
+									<div class="col-sm-1" style="margin-top:6px;margin-bottom:6px"><button>Edit</button></div>
 
 								</div>
 							</div>
@@ -184,46 +187,30 @@
 								<div class="col-sm-10" style="border-top:1px solid #000; border-left:1px solid #000;border-bottom:1px solid #000;border-right:1px solid #000;">
 								
 									<div class="col-sm-3" style="margin-top:10px;margin-bottom:6px"><strong>Job:</strong></div>
-									<div class="col-sm-7" style="margin-top:10px;margin-bottom:6px;word-wrap:break-word;word-break:break-all;overflow: hidden;"><?php echo $jobtitle; ?></div>
-									<input type="hidden" class="form-control" id="title" name="title" placeholder="job title">
-									
+									<div class="col-sm-7" style="margin-top:10px;margin-bottom:6px"><?php echo $jobtitle; ?></div>
+
 									<div class="col-sm-3" style="margin-top:6px;margin-bottom:6px"><strong>Salary:</strong></div>
-									<div class="col-sm-7" style="margin-top:6px;margin-bottom:6px;word-wrap:break-word;word-break:break-all;overflow: hidden;">$<?php echo $salary;?>/Week</div>
-									<input type="hidden" class="form-control" id="salary" name="salary" placeholder="salary">
+									<div class="col-sm-7" style="margin-top:6px;margin-bottom:6px"><?php echo $salary;?></div>
+
 									
 									<div class="col-sm-3" style="margin-top:6px;margin-bottom:6px"><strong>Job type:</strong></div>
-									<div class="col-sm-7" style="margin-top:6px;margin-bottom:6px;word-wrap:break-word;word-break:break-all;overflow: hidden;"><?php echo $type;?></div>
-									<input type="hidden" class="form-control" id="type" name="type" placeholder="job type">
+									<div class="col-sm-7" style="margin-top:6px;margin-bottom:6px"><?php echo $type;?></div>
 									
 									<div class="col-sm-3" style="margin-top:6px;margin-bottom:6px"><strong>Location:</strong></div>
-									<div class="col-sm-7" style="margin-top:6px;margin-bottom:6px;word-wrap:break-word;word-break:break-all;overflow: hidden;"><?php echo $location; ?></div>
-									<input type="hidden" class="form-control" id="location" name="location" placeholder="location">
+									<div class="col-sm-7" style="margin-top:6px;margin-bottom:6px"><?php echo $location; ?></div>
 									
 									<div class="col-sm-3" style="margin-top:6px;margin-bottom:6px"><strong>Vacancy:</strong></div>
-									<?php
-										if($vacancy !== "1")
-										{
-									?>
-									<div class="col-sm-7" style="margin-top:6px;margin-bottom:6px;word-wrap:break-word;word-break:break-all;overflow: hidden;"><?php echo $vacancy;?> People</div>
-									<?php
-										}
-										else
-										{
-									?>
-									<div class="col-sm-7" style="margin-top:6px;margin-bottom:6px;word-wrap:break-word;word-break:break-all;overflow: hidden;"><?php echo $vacancy;?> Person</div>
-									<?php
-										}
-									?>
-									<input type="hidden" class="form-control" id="vacancy" name="vacancy" placeholder="vacancy">
-									
+									<div class="col-sm-7" style="margin-top:6px;margin-bottom:6px"><?php echo $vacancy;?></div>
+
 									<div class="col-sm-3" style="margin-top:6px;margin-bottom:6px"><strong>Requirements:</strong></div>
-									<div class="col-sm-7" style="margin-top:6px;margin-bottom:6px;word-wrap:break-word;word-break:break-all;overflow: hidden;"><?php echo $requirements;?></div>
-									<textarea style="display:none;resize: none;" class="form-control" id="requirements" name="requirements" cols="5"></textarea>
-									
+									<div class="col-sm-7" style="margin-top:6px;margin-bottom:6px"><?php echo $requirements;?></div>
+
 									<div class="col-sm-3" style="margin-top:6px;margin-bottom:6px"><strong>Job Description:</strong></div>
-									<div class="col-sm-7" style="margin-top:6px;margin-bottom:6px;word-wrap:break-word;word-break:break-all;overflow: hidden;"><?php echo $detail;?></div>
-									<textarea style="display:none;resize: none;" class="form-control" id="detail" name="detail" cols="5"></textarea>
+									<div class="col-sm-7" style="margin-top:6px;margin-bottom:6px"><?php echo $detail;?></div>
 									
+									<div class="col-sm-11" style="margin-top:6px;margin-bottom:6px"></div>
+									<div class="col-sm-1" style="margin-top:6px;margin-bottom:6px"><button>Edit</button></div>
+
 								</div>
 							</div>
 							<br>
@@ -232,7 +219,7 @@
 						
 						<div class="box-footer">
 							<div class="pull-left">
-								<a href="post1" class="btn btn-default"><i class="fa fa-chevron-left"></i>Re-post</a>
+								<a href="post2" class="btn btn-default"><i class="fa fa-chevron-left"></i>Last Step</a>
 							</div>
 							<div class="pull-right">
 								<button type="submit" class="btn btn-primary">Confirm<i class="fa fa-chevron-right"></i>

@@ -89,8 +89,6 @@ Route::post('/changePass_user','FormController@changePass_user');
 
 Route::post('/changePass_enterprise','FormController@changePass_enterprise');
 
-Route::post('/changeEnterprise','FormController@changeEnterprise');
-
 Route::post('/post1','DisplayController@post1');
 
 Route::get('/post1','DisplayController@post1');
@@ -98,7 +96,5 @@ Route::get('/post1','DisplayController@post1');
 Route::post('/post4','DisplayController@post4');
 
 Route::get('/post4','DisplayController@post4');
-
-Route::post('/finalPost','FormController@finalPost');
 
 Route::post('/send_submit','FormController@send');

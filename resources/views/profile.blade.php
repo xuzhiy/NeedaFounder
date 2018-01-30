@@ -6,9 +6,9 @@
 	// Check if the user has logged in. 
 	if(isset($_SESSION['email']))
 	{  
-		foreach($enterprisea as $enterprise_account)
+		foreach($users as $user)
 		{
-			if($enterprise_account->email === $_SESSION['email'])
+			if($user->email === $_SESSION['email'])
 			{
 				$exist = 1;				// '$exist = 1' means the user is existed.
 				break;
@@ -25,7 +25,7 @@
 <head>
 	<meta charset="utf-8">
 	
-	<title>History</title>
+	<title>Profile</title>
 
 	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Arimo:400,700,400italic">
 	<link rel="stylesheet" href="assets/css/fonts/linecons/css/linecons.css">
@@ -36,6 +36,7 @@
 	<link rel="stylesheet" href="assets/css/xenon-components.css">
 	<link rel="stylesheet" href="assets/css/xenon-skins.css">
 	<link rel="stylesheet" href="assets/css/custom.css">
+	<link rel="stylesheet" href="css/component.css">
 
 	<script src="assets/js/jquery-3.2.1.min.js"></script>
 
@@ -55,17 +56,17 @@
 		<!-- Adding class "toggle-others" will keep only one menu item open at a time. -->
 		<!-- Adding class "collapsed" collapse sidebar root elements and show only icons. -->
 		<div class="sidebar-menu toggle-others fixed">
-
-			<div class="sidebar-menu-inner">
-
+			
+			<div class="sidebar-menu-inner">	
+				
 				<header class="logo-env">
-
+					
 					<!-- logo -->
 					<div class="logo">
 						<a href="homepage" class="logo-expanded">
 							<img src="assets/images/logo@2x.png" width="80" alt="" />
 						</a>
-
+						
 						<a href="homepage" class="logo-collapsed">
 							<img src="assets/images/logo-collapsed@2x.png" width="40" alt="" />
 						</a>
@@ -82,18 +83,18 @@
 							<i class="fa-bars"></i>
 						</a>
 					</div>
-
-
+					
+								
 				</header>
-
-
-
+						
+				
+						
 				<ul id="main-menu" class="main-menu">
 					<!-- add class "multiple-expanded" to allow multiple submenus to open -->
 					<!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
 
-					<li >
-						<a href="profile_enterprise">
+					<li class="active opened active">
+						<a href="profile">
 							<i class="linecons-params"></i>
 							<span class="title">Profile</span>
 						</a>
@@ -104,29 +105,27 @@
 							<span class="title">Message</span>
 						</a>
 					</li>
-					<li class="active opened active">
-						<a href="member">
-							<i class="linecons-database"></i>
-							<span class="title">Members</span>
-						</a>
-
-					</li>
 					<li>
-						<a href="publish">
+						<a href="history">
 							<i class="linecons-database"></i>
-							<span class="title">Published</span>
+							<span class="title">Histories</span>
 						</a>
 
 					</li>
 				</ul>
-
+						
 			</div>
-
+			
 		</div>
+		
 		<div class="main-content">
 					
 			<!-- User Info, Notifications and Menu Bar -->
 			<nav class="navbar user-info-navbar" role="navigation">
+				
+
+				
+				
 				<!-- Right links for user info navbar -->
 				<ul class="user-info-menu right-links list-inline list-unstyled">
 					
@@ -168,7 +167,7 @@
 								</a>
 							</li>
 							<li>
-								<a href="profile_enterprise">
+								<a href="profile">
 									<i class="fa-user"></i>
 									Profile
 								</a>
@@ -196,84 +195,128 @@
 			<div class="page-title">
 				
 				<div class="title-env">
-					<h1 class="title">Member List</h1>
-					<p class="description">All the members in this enterprise.</p>
+					<h1 class="title">User Profile</h1>
+					<p class="description">Plain text boxes, select dropdowns and other basic form profile</p>
 				</div>
-				
+
 			</div>
-			<!-- Table Styles -->
+			
 			<div class="row">
-				<div class="col-md-12">
-				
+				<div class="col-sm-12">
+					
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<h3 class="panel-title">Member List</h3>
+							<h3 class="panel-title">Change your Password</h3>
 						</div>
-						<div class="panel-body panel-border">
-						
-							<div class="row">
-								<div class="col-sm-12">
-									<table class="table table-model-2 table-hover">
-										<thead>
-											<tr>
-												<th>Name</th>
-												<th>Email</th>
-												<th>Phone</th>
-												<th>Address</th>
-											</tr>
-										</thead>
-										
-										<tbody>
-											<?php
-												$x = 0; //x is the number of displayed objects.
-											?> 
-											@foreach($users as $user)
-											<?php
-												if(isset($_SESSION['name']))
-												{  
-													if($user->enterprise == $_SESSION['name'])
-													{
-														$x = $x + 1;
-													} 
-													else
-													{
-														continue;
-													}
-
-													
-												}
-												else
-												{
-													continue;
-												}
-											?>
-											<tr>
-												<form action="member" method="post">
-													{{ csrf_field() }}
-													<td>{{$user->name}}</td>
-													<td>{{$user->email}}</td>
-													<td>{{$user->phone}}</td>
-													<td>{{$user->address}}</td>
-												</form>
-											</tr>
-											@endforeach
-										</tbody>
-									</table>
-									<?php
-									if ( $x === 0 ) 
-									{
-										echo "<div style='text-align: center;'><h1>No search result.</h1></div>";
-									}
-									?>
+						<div class="panel-body">
+							
+							<form action="changePass" method="post" role="form" class="form-horizontal">
+								{{ csrf_field() }}
+								<div class="form-group">
+									<label class="col-sm-2 control-label" for="field-2">Password</label>
+									
+									<div class="col-sm-10">
+										<input type="password" class="form-control" id="field-2" name="password1">
+									</div>
 								</div>
-							</div>
-						
+
+								<div class="form-group-separator"></div>
+							
+								<div class="form-group">
+									<label class="col-sm-2 control-label" for="field-3">Confirm Password</label>
+
+									<div class="col-sm-10">
+										<input type="password" class="form-control" id="field-3" name="password2">
+									</div>
+								</div>
+								
+								<div class="form-group" style="margin:0 auto;">
+									<button type="submit" class="button black">Submit</button>
+								</div>
+							</form>
+							
 						</div>
-						
 					</div>
 					
 				</div>
 			</div>
+			
+			@foreach($users as $user)
+			<?php
+				if(isset($_SESSION['email']))
+				{  
+					if($user->email !== $_SESSION['email'])
+					{
+						continue;
+					}
+				}
+				else
+				{
+					continue;
+				}
+			?>
+			<div class="row">
+				<div class="col-sm-12">
+					
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">Change your information</h3>
+						</div>
+						<div class="panel-body">
+							
+							<form action="changeInfor" method="post" role="form" class="form-horizontal">
+								{{ csrf_field() }}
+								<div class="form-group">
+									<label class="col-sm-2 control-label" for="field-1">Name</label>
+									
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="field-1" value="{{$user->name}}" name="name">
+									</div>
+								</div>
+								
+								<div class="form-group-separator"></div>
+
+								<div class="form-group">
+									<label class="col-sm-2 control-label" for="field-4">Phone Number</label>
+
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="field-4" value="{{$user->phone}}" name="phone">
+									</div>
+								</div>
+
+								<div class="form-group-separator"></div>
+								
+								<div class="form-group">
+									<label class="col-sm-2 control-label" for="field-5">Your Email</label>
+									
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="field-5" value="{{$user->email}}" readonly name="email">
+									</div>
+								</div>
+								
+								<div class="form-group-separator"></div>
+								
+								<div class="form-group">
+									<label class="col-sm-2 control-label" for="field-6">Your Address</label>
+									
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="field-6" value="{{$user->address}}" name="address">
+									</div>
+								</div>
+								
+								<div class="form-group" style="margin:0 auto;">
+									<button type="submit" class="button black">Submit</button>
+								</div>
+							</form>
+							
+						</div>
+					</div>
+					
+				</div>
+			</div>
+			@endforeach
+			
+
 			<!-- Main Footer -->
 			<!-- Choose between footer styles: "footer-type-1" or "footer-type-2" -->
 			<!-- Add class "sticky" to  always stick the footer to the end of page (if page contents is small) -->
@@ -286,7 +329,7 @@
 					<div class="footer-text">
 						&copy; 2017
 						<strong>Group5</strong>
-						theme by <a href="http://laborator.co" target="_blank">NAC</a>
+						theme by <a href="http://laborator.co" target="_blank">N.A.C</a>
 					</div>
 					
 					
@@ -305,10 +348,6 @@
 		</div>
 		
 	</div>
-	
-	
-	
-
 
 
 	<!-- Bottom Scripts -->
