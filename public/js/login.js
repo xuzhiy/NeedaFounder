@@ -39,7 +39,7 @@ function verify_register()
 	
 	var email_format = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z]{2,4})+$/;
 	var name_format = /^\w+$/;
-	var password_format = /^(\w{5,20})+$/;
+	var password_format = /^\w{5,20}$/;
 	// Verify input name
 	if (name === "")
 	{
@@ -86,7 +86,7 @@ function verify_register()
 	
 	var email_format = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z]{2,4})+$/;
 	var name_format = /^\w+$/;
-	var password_format = /^(\w{5,20})+$/;
+	var password_format = /^\w{5,20}$/;
 	// Verify input name
 	if (name === "")
 	{

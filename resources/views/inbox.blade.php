@@ -270,14 +270,14 @@
 													if($message->receiver == $_SESSION['email']){
 												
 													$x = $x + 1;
-													$receiver = $message->receiver;
+													$sender = $message->sender;
 													$subject = $message->subject;
 													$content = $message->content;
 													$time = $message->time;
 
 											?>
 											<tr>
-												<td style="word-wrap:break-word;" >{{$receiver}}</td>
+												<td style="word-wrap:break-word;" >{{$sender}}</td>
 												<td style="word-wrap:break-word;" >{{$subject}}</td>
 												<td style="word-wrap:break-word;" >{{$content}}</td>
 												<td style="word-wrap:break-word;" >{{$time}}</td>

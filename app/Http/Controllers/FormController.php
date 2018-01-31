@@ -83,7 +83,7 @@ class FormController extends Controller
 	{
 		$name_format = '/^\w+$/';
 		$email_format = '/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z]{2,4})+$/';
-		$password_format = '/^(\w{5,20})+$/';
+		$password_format = '/^\w{5,20}$/';
 		
 		// Get infor from request
         $input=Request::all();
@@ -149,7 +149,7 @@ class FormController extends Controller
 	{
 		$name_format = '/^\w+$/';
 		$email_format = '/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z]{2,4})+$/';
-		$password_format = '/^(\w{5,20})+$/';
+		$password_format = '/^\w{5,20}$/';
 		
 		// Get infor from request
         $input=Request::all();
@@ -223,7 +223,7 @@ class FormController extends Controller
 	// Change password function.
 	public function changePass_user()
 	{
-		$password_format = '/^(\w{5,20})+$/';
+		$password_format = '/^\w{5,20}$/';
 		
 		// Get infor from request
         $input=Request::all();
@@ -258,7 +258,7 @@ class FormController extends Controller
 	
     public function changePass_enterprise()
 	{
-		$password_format = '/^(\w{5,20})+$/';
+		$password_format = '/^\w{5,20}$/';
 		
 		// Get infor from request
         $input=Request::all();
